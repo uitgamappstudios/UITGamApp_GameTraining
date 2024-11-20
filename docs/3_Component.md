@@ -32,7 +32,7 @@ Chẳng hạn, đối với Component *AudioSource* dùng để quản lý âm t
   - `clip`: File âm thanh cần phát.
   - `volume`: Điều chỉnh âm lượng.
 - Hành vi:
-  - Phát (`Play()`), dừng (`Stop()`), hoặc lặp âm thanh (`loop`).
+  - Phát (`Play()`), dừng (`Stop()`).
 
 Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trách một chức năng cụ thể: Tương tự như giáp trụ dùng để phòng thủ, kiếm để tấn công, thú cưỡi để tăng tốc độ di chuyển vậy! Bạn sẽ chỉnh sửa các thuộc tính của Component và kích hoạt các hành vi của Component để GameObject hành động theo đúng ý bạn muốn.
 
