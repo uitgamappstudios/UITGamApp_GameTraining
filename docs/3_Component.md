@@ -43,28 +43,86 @@ Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trác
 
 Và một điều tuyệt vời hơn là bạn hoàn toàn có thể tạo ra những Component mới để gắn vào GameObject. Việc vận dụng nhuần nhuyễn hai thành tố này là mấu chốt để tạo ra một game cơ bản!
 
+## Phân loại Component
+### 1. Component có sẵn (Built-in Components) 
+
+Đây là những Component đã được Unity định nghĩa sẵn, có sẵn trong Unity Editor để bạn có thể dễ dàng sử dụng. Các Component này bao gồm những tính năng cơ bản để xây dựng game như vật lý, hình ảnh, âm thanh, va chạm, v.v.
+
+Bạn có thể tham khảo một số Component có sẵn ở phần sau: [Một số loại Component có sẵn trong Unity](#một-số-loại-component-có-sẵn-trong-unity).
+
+### 2. Component tự định nghĩa (Script Components)
+
+Đây là những Component mà bạn tự tạo ra bằng cách viết mã C# để thêm các tính năng hoặc hành vi tùy chỉnh cho GameObject. Những Component này thường dùng để kiểm soát hành vi của GameObject thông qua lập trình. Chẳng hạn, bạn có thể tạo ra các component cho hành vi di chuyển của nhân vật, điều khiển AI, hoặc các logic đặc biệt khác.
+
+**Ví dụ:** Component này sẽ làm cho GameObject (nhân vật) di chuyển dựa trên input của người chơi.
+```csharp
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+    
+    void Update()
+    {
+        // Khởi tạo giá trị di chuyển
+        float horizontal = 0f;
+        float vertical = 0f;
+
+        // Kiểm tra các phím bấm và thay đổi giá trị di chuyển tương ứng
+        if (Input.GetKey(KeyCode.A)) // Phím A (di chuyển sang trái)
+        {
+            horizontal = -1f;
+        }
+        if (Input.GetKey(KeyCode.D)) // Phím D (di chuyển sang phải)
+        {
+            horizontal = 1f;
+        }
+        if (Input.GetKey(KeyCode.W)) // Phím W (di chuyển lên trên)
+        {
+            vertical = 1f;
+        }
+        if (Input.GetKey(KeyCode.S)) // Phím S (di chuyển xuống dưới)
+        {
+            vertical = -1f;
+        }
+        
+        // Tính toán hướng di chuyển và áp dụng nó
+        Vector3 move = new Vector3(horizontal, 0, vertical) * moveSpeed * Time.deltaTime;
+        transform.Translate(move);
+    }
+}
+```
+
+### 3. Sự khác biệt giữa Component có sẵn và Component tự định nghĩa
+
+| **Đặc điểm**               | **Component có sẵn**                           | **Component tự định nghĩa**                  |
+|--------------------------|------------------------------------------------|---------------------------------------------|
+| **Tạo ra bởi**            | Unity cung cấp sẵn                            | Lập trình viên tự tạo ra                    |
+| **Ví dụ**                 | `Rigidbody`, `Collider`, `Camera`, `SpriteRenderer` | Các script như `PlayerMovement`, `AIController`, v.v. |
+| **Cấu hình**              | Cấu hình trực tiếp qua Unity Editor            | Cấu hình thông qua mã nguồn C#              |
+| **Mục đích**              | Cung cấp các tính năng cơ bản của Unity        | Thực hiện hành vi hoặc tính năng đặc biệt cho GameObject |
+
 ## Sử dụng Component
-### Phân loại Component
 ### Thêm Component
-#### Thêm Component cơ bản
-#### Thêm Script Component
-#### Gỡ Component
+#### 1. Thêm Component cơ bản
+#### 2. Thêm Script Component
+#### 3. Gỡ Component
 
 ### Chỉnh sửa Component
-#### Chỉnh sửa trên Unity Editor
-#### Chỉnh sửa bằng Script
+#### 1. Chỉnh sửa trên Unity Editor
+#### 2. Chỉnh sửa bằng Script
 
 ### Deactivate Component
 
 ## Một số loại Component có sẵn trong Unity
-### Transform
-### Rigidbody
-### Collider
-### Sprite Renderer
-### Camera
-### AudioSource
+### 1. Transform
+### 2. Rigidbody
+### 3. Collider
+### 4. Sprite Renderer
+### 5. Camera
+### 6. AudioSource
 
-## Hướng dẫn chạy code
+## Hướng dẫn chạy code minh họa
 
 ## Tóm lược
 ### Component là gì?
