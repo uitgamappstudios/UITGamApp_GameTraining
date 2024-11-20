@@ -13,10 +13,10 @@ giúp cục pixel này có thể xưng bá thiên hạ, trở thành một thàn
 
 Nói một cách đơn giản, trong game của bạn có cái gì thì cái đó chắc chắn là một GameObject. Đến cả background cũng là một GameObject.
 
-<div style="text-align: center;">
+<p align="center">
   <img src="https://github.com/user-attachments/assets/d9d7844f-fb55-4955-ae37-595ddc4f119b" alt="GameObject Example" style="width: 50%;"/>
-  <p><em>Hình minh họa: Mọi thứ trong game đều là GameObject</em></p>
-</div>
+  <p align="center"><em>Hình minh họa: Mọi thứ trong game đều là GameObject</em></p>
+</p>
 
 Mặt khác, nếu game của bạn chỉ có mỗi GameObject, thì nó chỉ đơn giản là một bức ảnh tĩnh với vài ba cục pixel mà thôi! Bản thân GameObject chỉ là một cái vỏ rỗng, và đó là lý do chúng ta cần **Component**.
 
@@ -36,10 +36,10 @@ Chẳng hạn, đối với Component *AudioSource* dùng để quản lý âm t
 
 Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trách một chức năng cụ thể: Tương tự như giáp trụ dùng để phòng thủ, kiếm để tấn công, thú cưỡi để tăng tốc độ di chuyển vậy! Bạn sẽ chỉnh sửa các thuộc tính của Component và kích hoạt các hành vi của Component để GameObject hành động theo đúng ý bạn muốn.
 
-<div style="text-align: center;">
+<p align="center">
   <img src="https://github.com/user-attachments/assets/17877fc6-eb82-4113-afc0-7211d2fdb90f" alt="Component Example" style="width: 50%;"/>
-  <p><em>Hình minh họa: Một số component cơ bản trong nhân vật Angry Bird</em></p>
-</div>
+  <p align="center"><em>Hình minh họa: Một số component cơ bản trong nhân vật Angry Bird</em></p>
+</p>
 
 Và một điều tuyệt vời hơn là bạn hoàn toàn có thể tạo ra những Component mới để gắn vào GameObject. Việc vận dụng nhuần nhuyễn hai thành tố này là mấu chốt để tạo ra một game cơ bản!
 
