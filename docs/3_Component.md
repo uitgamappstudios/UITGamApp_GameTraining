@@ -33,7 +33,7 @@ Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trác
   <p><em>Hình minh họa: Một số component cơ bản trong nhân vật Angry Bird</em></p>
 </div>
 
-Và một điều tuyệt vời hơn là bạn hoàn toàn có thể chỉnh sửa Component theo ý mình, hoặc tạo ra những Component mới để gắn vào GameObject! Việc vận dụng nhuần nhuyễn hai anh bạn này là mấu chốt để tạo ra một con game cơ bản!
+Và một điều tuyệt vời hơn là bạn hoàn toàn có thể chỉnh sửa Component theo ý mình, hoặc tạo ra những Component mới để gắn vào GameObject. Việc vận dụng nhuần nhuyễn hai thành tố này là mấu chốt để tạo ra một game cơ bản!
 
 ## Sử dụng Component
 ### Phân loại Component
