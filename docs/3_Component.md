@@ -26,14 +26,22 @@ Nếu GameObject là một cái vỏ rỗng, thì Component chính là những m
 **Công thức Component**: Component = Thuộc tính + Hành vi
 - Thuộc tính: Các giá trị như vị trí, kích thước, trọng lực, màu sắc...
 - Hành vi: Các hành động, như di chuyển, va chạm, hoặc phát âm thanh...
-Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trách một chức năng cụ thể: Tương tự như giáp trụ dùng để phòng thủ, kiếm để tấn công, thú cưỡi để tăng tốc độ di chuyển vậy!
+
+Chẳng hạn, đối với Component *AudioSource* dùng để quản lý âm thanh:
+- Thuộc tính:
+  - `clip`: File âm thanh cần phát.
+  - `volume`: Điều chỉnh âm lượng.
+- Hành vi:
+  - Phát (`Play()`), dừng (`Stop()`), hoặc lặp âm thanh (`loop`).
+
+Một GameObject có thể chứa nhiều Component. Mỗi Component phụ trách một chức năng cụ thể: Tương tự như giáp trụ dùng để phòng thủ, kiếm để tấn công, thú cưỡi để tăng tốc độ di chuyển vậy! Bạn sẽ chỉnh sửa các thuộc tính của Component và kích hoạt các hành vi của Component để GameObject hành động theo đúng ý bạn muốn.
 
 <div style="text-align: center;">
   <img src="https://github.com/user-attachments/assets/17877fc6-eb82-4113-afc0-7211d2fdb90f" alt="Component Example" style="width: 50%;"/>
   <p><em>Hình minh họa: Một số component cơ bản trong nhân vật Angry Bird</em></p>
 </div>
 
-Và một điều tuyệt vời hơn là bạn hoàn toàn có thể chỉnh sửa Component theo ý mình, hoặc tạo ra những Component mới để gắn vào GameObject. Việc vận dụng nhuần nhuyễn hai thành tố này là mấu chốt để tạo ra một game cơ bản!
+Và một điều tuyệt vời hơn là bạn hoàn toàn có thể tạo ra những Component mới để gắn vào GameObject. Việc vận dụng nhuần nhuyễn hai thành tố này là mấu chốt để tạo ra một game cơ bản!
 
 ## Sử dụng Component
 ### Phân loại Component
