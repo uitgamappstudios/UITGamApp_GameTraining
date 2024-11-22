@@ -27,6 +27,15 @@ public class BaseBullet : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
+        {
+            enemy.ModifyHealth(damage);
+            BulletManager.Instance.ReleaseBullet(this);
+        }
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
