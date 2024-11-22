@@ -1,9 +1,8 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    private ObjectPool bulletPool;
+    [HideInInspector] public ObjectPool bulletPool;
 
     private static BulletManager _instance;
 
@@ -50,11 +49,23 @@ public class BulletManager : MonoBehaviour
         bulletPool = GetComponent<ObjectPool>();
     }
 
-    private void Update()
+    public bool ReleaseBullet(BaseBullet bullet)
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (bullet.TryGetComponent<PooledObject>(out PooledObject pooledObject))
         {
-            bulletPool.GetPooledObject();
+            BulletManager.Instance.bulletPool.ReleasePooledObject(pooledObject);
+            return true;
+        }
+        return false;
+    }
+
+    public void Shoot(Vector2 spawnPosition, Vector2 shootDirection)
+    {
+        PooledObject pooledObject = bulletPool.GetPooledObject();
+        
+        if (pooledObject.TryGetComponent<BaseBullet>(out BaseBullet bullet))
+        {
+            bullet.BulletInit(spawnPosition, shootDirection);
         }
     }
 }

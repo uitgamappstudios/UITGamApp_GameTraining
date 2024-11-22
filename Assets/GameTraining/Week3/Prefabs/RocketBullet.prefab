@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7915881619914008711}
   - component: {fileID: -8128148426248573957}
   - component: {fileID: -1963620978813216219}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RocketBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,8 +116,7 @@ MonoBehaviour:
   speed: 5
   damage: 1
   target: {fileID: 0}
-  initialDirection: {x: 0, y: 1}
-  radius: 7
+  radius: 15
   rotateSpeed: 80
 --- !u!50 &-8128148426248573957
 Rigidbody2D:

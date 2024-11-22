@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BaseBullet : MonoBehaviour
 {
@@ -13,6 +10,21 @@ public class BaseBullet : MonoBehaviour
     virtual protected void Move(Vector2 direction) 
     {
         rb.velocity = direction.normalized * speed;
+    }
+
+    virtual public void BulletInit(Vector2 spawnPosition, Vector2 shootDirection) 
+    {
+        transform.position = spawnPosition;
+        Move(shootDirection);
+    }
+
+    virtual public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
+        {
+            enemy.ModifyHealth(damage);
+            BulletManager.Instance.ReleaseBullet(this);
+        }
     }
 
     private void Awake()

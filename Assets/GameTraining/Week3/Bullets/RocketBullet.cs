@@ -14,6 +14,12 @@ public class RocketBullet : BaseBullet
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90), rotateSpeed * Time.deltaTime);
     }
 
+    public override void BulletInit(Vector2 spawnPosition, Vector2 shootDirection)
+    {
+        base.BulletInit(spawnPosition, shootDirection);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg - 90);
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -32,5 +38,11 @@ public class RocketBullet : BaseBullet
     {
         // Vẽ vùng biên định vị của đạn trong tab Scene
         Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    override public void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+        BulletManager.Instance.ReleaseBullet(this);
     }
 }

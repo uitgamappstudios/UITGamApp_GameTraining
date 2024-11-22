@@ -45,7 +45,6 @@ public class ObjectPool : MonoBehaviour
             instance = pool.ElementAt(pool.Count - 1);
         }
         pool.Remove(instance);
-        instance.BulletInit();
         instance.gameObject.SetActive(true);
         return instance;
     }
