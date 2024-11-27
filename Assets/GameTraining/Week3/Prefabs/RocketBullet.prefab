@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7915881619914008711}
   - component: {fileID: -8128148426248573957}
   - component: {fileID: -1963620978813216219}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RocketBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,11 +113,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f9c4417807950498b0d918d82b4fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool: {fileID: 0}
   speed: 5
   damage: 1
   target: {fileID: 0}
   radius: 15
   rotateSpeed: 80
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!50 &-8128148426248573957
 Rigidbody2D:
   serializedVersion: 4

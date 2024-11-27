@@ -53,19 +53,17 @@ public class BulletManager : MonoBehaviour
     {
         if (bullet.TryGetComponent<PooledObject>(out PooledObject pooledObject))
         {
-            BulletManager.Instance.bulletPool.ReleasePooledObject(pooledObject);
+            bulletPool.ReleasePooledObject(pooledObject);
+            bullet.transform.position = Vector3.zero;
             return true;
         }
         return false;
     }
 
-    public void Shoot(Vector2 spawnPosition, Vector2 shootDirection)
+    public BaseBullet Shoot(BaseBullet bullet)
     {
-        PooledObject pooledObject = bulletPool.GetPooledObject();
-        
-        if (pooledObject.TryGetComponent<BaseBullet>(out BaseBullet bullet))
-        {
-            bullet.BulletInit(spawnPosition, shootDirection);
-        }
+        PooledObject res = bulletPool.GetPooledObject(bullet);
+        Debug.Log(res is BaseBullet);
+        return res.GetComponent<BaseBullet>();
     }
 }

@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Net.Http.Headers;
+using UnityEngine;
 
 public class RocketBullet : BaseBullet
 {
     [SerializeField] private float radius;
     [SerializeField] private float rotateSpeed;
-    
+    [SerializeField] private LayerMask targetLayer;
 
     public void RotateTowardsTarget()
     {
@@ -20,18 +21,21 @@ public class RocketBullet : BaseBullet
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg - 90);
     }
 
-    protected override void Start()
+    private void CheckTarget()
     {
-        base.Start();
+        Collider2D col = Physics2D.OverlapCircle(transform.position, radius, LayerMask.GetMask(LayerMask.LayerToName((int)Mathf.Log(targetLayer.value, 2))));
+        if (col != null) 
+            target = col.gameObject;
     }
 
     public void Update()
     {
         Move(transform.up);
-        if (Vector2.Distance(target.transform.position, this.transform.position) < radius )
-        {
-            RotateTowardsTarget();
-        }
+        
+        CheckTarget();
+        if (!target) return;
+        
+        RotateTowardsTarget();
     }
 
     private void OnDrawGizmos()
@@ -40,9 +44,10 @@ public class RocketBullet : BaseBullet
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    override public void OnCollisionEnter2D(Collision2D collision)
+    override protected void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-        BulletManager.Instance.ReleaseBullet(this);
+        if (collision.collider.gameObject.layer == (int)Mathf.Log(targetLayer.value, 2))
+            KillBullet();
     }
 }

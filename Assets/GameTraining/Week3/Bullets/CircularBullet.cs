@@ -6,6 +6,10 @@ public class CircularBullet : BaseBullet
     [SerializeField] private float radius;
     private float currentAngle;
 
+    protected void BulletInit(GameObject target)
+    {
+    }
+
     protected void CircleAroundPlayer()
     {
         // sin = đối / huyền, cos = kề / huyền => từ công thức mà suy ra thôi nhé!
@@ -18,8 +22,8 @@ public class CircularBullet : BaseBullet
 
     protected override void Start()
     {
-        base.Start();
         currentAngle = angle;
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()

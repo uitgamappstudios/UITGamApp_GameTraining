@@ -6,7 +6,6 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private List<PooledObject> pool; // Có thể sử dụng Stack, Queue,... thay cho List
     [SerializeField] private int initCapacity; // Số lượng item có sẵn trong pool
-    [SerializeField] private PooledObject pooledObject;
 
     private void Start()
     {
@@ -16,33 +15,28 @@ public class ObjectPool : MonoBehaviour
     public void InitPool()
     {
         pool = new List<PooledObject>();
-        for (int i = 0; i < initCapacity; i++)
-        {
-            Create();
-        }
     }
 
     // Tạo object mới và thêm vào pool
-    public PooledObject Create()
+    public PooledObject Create(PooledObject pooledObject)
     {
         PooledObject instance = Instantiate(pooledObject);
         instance.pool = this;
+        instance.name = pooledObject.name;
         instance.gameObject.SetActive(false);
         pool.Add(instance);
         return instance;
     }
 
     // Lấy object ra từ pool
-    public PooledObject GetPooledObject()
+    public PooledObject GetPooledObject(PooledObject pooledObject)
     {
         PooledObject instance;
-        if (pool.Count == 0)
+        instance = pool.Find(o => o.name == pooledObject.name);
+        Debug.Log(instance);
+        if (!instance)
         {
-            instance = Create();
-        }
-        else
-        {
-            instance = pool.ElementAt(pool.Count - 1);
+            instance = Create(pooledObject);
         }
         pool.Remove(instance);
         instance.gameObject.SetActive(true);

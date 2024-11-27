@@ -10,7 +10,7 @@ public class BaseEnemy : MonoBehaviour
 
     public virtual void ModifyHealth(float delta)
     {
-        health += delta;
+        currentHealth += delta;
         if (currentHealth < 0)
             Die();
     }

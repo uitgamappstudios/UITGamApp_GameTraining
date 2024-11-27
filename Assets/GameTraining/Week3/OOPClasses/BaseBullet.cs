@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class BaseBullet : MonoBehaviour
+public class BaseBullet : PooledObject
 {
     protected Rigidbody2D rb;
     [SerializeField] protected float speed;
     [SerializeField] protected float damage;
-    [SerializeField] protected GameObject target;
+    public GameObject target;
 
     virtual protected void Move(Vector2 direction) 
     {
@@ -18,22 +18,26 @@ public class BaseBullet : MonoBehaviour
         Move(shootDirection);
     }
 
-    virtual public void OnCollisionEnter2D(Collision2D collision)
+    virtual protected void OnCollisionEnter2D(Collision2D collision) 
     {
-        if (collision.collider.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
-        {
-            enemy.ModifyHealth(damage);
-            BulletManager.Instance.ReleaseBullet(this);
-        }
+        OnCollision(collision.collider.GetComponent<BaseEnemy>());
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    virtual protected void OnTriggerEnter2D(Collider2D collision) 
     {
-        if (collision.TryGetComponent<BaseEnemy>(out BaseEnemy enemy))
-        {
-            enemy.ModifyHealth(damage);
-            BulletManager.Instance.ReleaseBullet(this);
-        }
+        Debug.Log(collision.name);
+        OnCollision(collision.GetComponent<BaseEnemy>());
+    }
+
+    virtual protected void OnCollision(BaseEnemy enemy)
+    {
+        if (enemy == null) return;
+        enemy.ModifyHealth(-damage);
+    }
+
+    virtual protected void KillBullet()
+    {
+        BulletManager.Instance.ReleaseBullet(this);
     }
 
     private void Awake()
@@ -41,8 +45,5 @@ public class BaseBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    virtual protected void Start()
-    {
-        target = GameObject.FindGameObjectWithTag("Player");
-    }
+    virtual protected void Start() { }
 }

@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private BaseBullet bullet;
 
     void Update()
     {
@@ -15,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            BulletManager.Instance.Shoot(transform.position, direction);
+            BaseBullet returnBullet = BulletManager.Instance.Shoot(bullet);
+            Debug.Log(returnBullet);
+            returnBullet.BulletInit(transform.position, direction);
         }
     }
 }
