@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  maxHealth: 0
+  maxHealth: 10
   bullet: {fileID: 4869904749754759930, guid: 6dc71c6c4b07d1545af0f3caa21889bc, type: 3}
 --- !u!70 &3605095448314344650
 CapsuleCollider2D:

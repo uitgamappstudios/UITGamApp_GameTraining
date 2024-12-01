@@ -1,0 +1,97 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class LevelUpManager : MonoBehaviour
+{
+    [SerializeField] private Skill[] allSkills;
+    [SerializeField] private GameObject chooseSkillPanel;
+    [SerializeField] private Button[] skillButtons;
+    [SerializeField] private Player player;
+
+    private int level = 1;
+    private int currentEXP = 0;
+    private int maxEXP = 10;
+
+    #region Singleton
+    private static LevelUpManager instance;
+
+    public static LevelUpManager Instance => instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    #endregion
+
+    public void AddExp(int exp)
+    {
+        currentEXP += exp;
+
+        if (currentEXP >= maxEXP)
+        {
+            currentEXP = 0;
+            level++; 
+
+            LevelUp();
+        }    
+    }    
+
+    public void LevelUp()
+    {
+        // Pause game để chọn skill
+        Time.timeScale = 0;
+
+        chooseSkillPanel.SetActive(true);
+
+        List<Skill> randomSkills = GetRandomSkills(skillButtons.Length);
+
+        for (int i = 0; i < skillButtons.Length; i++)
+        {
+            Skill skill = randomSkills[i];
+            skillButtons[i].transform.Find("Name").GetComponentInChildren<TextMeshProUGUI>().text = skill.skillName;
+            skillButtons[i].transform.Find("Image").GetComponentInChildren<Image>().sprite = skill.icon;
+            skillButtons[i].onClick.AddListener(() => ChooseSkill(skill));
+        }
+    }   
+    
+    private List<Skill> GetRandomSkills(int number)
+    {
+        List<Skill> skills = new List<Skill>();
+
+        for (int i = 0; i < number; i++)
+        {
+            Skill randomSkill;
+
+            do
+            {
+                randomSkill = allSkills[Random.Range(0, allSkills.Length)];
+            }
+            while (skills.Contains(randomSkill));
+            
+            skills.Add(randomSkill);
+        }
+
+        return skills;
+    }
+
+    private void ChooseSkill(Skill skill)
+    {
+        player.AddSkill(skill);
+
+        // Deactivate panel sau khi chọn xong skill
+        chooseSkillPanel.SetActive(false);
+
+        // PlayGame
+        Time.timeScale = 1;
+    }
+}

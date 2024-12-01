@@ -9,10 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private BaseBullet bullet;
 
     private float health;
+    private float coolDownTime = 0f;
+
     private List<Skill> skillList = new List<Skill>();
+
     private bool isShooting = false;
-    private bool isSideBullets = true;
-    private float coolDownTime = 1f;
+    private bool isSideBullets = false;
 
     private int numberOfShot = 1; // Số lượng đạn được bắn ra khi click
 
