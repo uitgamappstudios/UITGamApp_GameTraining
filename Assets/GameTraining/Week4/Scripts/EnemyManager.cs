@@ -21,6 +21,7 @@ public class EnemyManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            gameObject.SetActive(false);
         }
         else
         {
@@ -33,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     {
         SpawnEnemy(5);
     }    
-
+    
     public void SpawnEnemy(int number)
     {
         for (int i = 0; i < number; i++)

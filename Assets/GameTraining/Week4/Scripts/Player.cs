@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxHealth;
     [SerializeField] private BaseBullet bullet;
-
     private float health;
     private float coolDownTime = 0f;
 
