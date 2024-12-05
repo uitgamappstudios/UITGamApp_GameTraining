@@ -6,8 +6,10 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private BaseEnemy enemyPrefab;
-    [SerializeField] private float rangeX; // Khoảng để spawn enemy
-    [SerializeField] private float rangeY;
+    [SerializeField] GameObject angelPref;
+    public float maxCountDown;
+    public float countDown;
+    GameObject angel;
 
     private List<BaseEnemy> enemies = new List<BaseEnemy>();
 
@@ -22,6 +24,7 @@ public class EnemyManager : MonoBehaviour
         {
             instance = this;
             gameObject.SetActive(false);
+            countDown = maxCountDown;
         }
         else
         {
@@ -33,8 +36,14 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         SpawnEnemy(5);
-    }    
-    
+    }
+    private void Update()
+    {
+        if (countDown > 0)
+        {
+            countDown -= 1 * Time.deltaTime;
+        }
+    }
     public void SpawnEnemy(int number)
     {
         for (int i = 0; i < number; i++)
@@ -43,23 +52,45 @@ public class EnemyManager : MonoBehaviour
 
             var enemy = Instantiate(enemyPrefab, position, Quaternion.identity, this.transform);
             enemies.Add(enemy);
-        }    
-    }   
-    
+        }
+    }
+
     private Vector3 GetRandomPosition()
     {
-        float x = Random.Range(-rangeX, rangeX);
-        float y = Random.Range(-rangeY, rangeY);
-        return new Vector3(x,y);
-    }    
+        float x = Random.Range(-2, 2);
+        float y = Random.Range(-1.4f, 2);
+        return new Vector3(x, y);
+    }
 
     public void RemoveEnemy(BaseEnemy enemy)
     {
-        enemies.Remove(enemy); 
-        
-        if (enemies.Count == 0 )
+        enemies.Remove(enemy);
+
+        if (enemies.Count == 0 && countDown <= 0)
+        {
+            SpawnAngel();
+        }
+        else if (enemies.Count == 0 && countDown > 0)
         {
             SpawnEnemy(5);
-        }    
-    }    
+        }
+    }
+
+    private void SpawnAngel()
+    {
+        angel = Instantiate(angelPref, new Vector2(0, 1), Quaternion.identity);
+    }
+
+    public void destroyAngel()
+    {
+        if (angel != null)
+        {
+            Destroy(angel);
+            angel=null;
+            SpawnEnemy(5);
+            countDown=maxCountDown;
+        }
+
+    }
+
 }

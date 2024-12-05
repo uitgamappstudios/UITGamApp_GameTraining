@@ -8,7 +8,7 @@ public class NormalBullet : BaseBullet
     {
         base.OnCollisionEnter2D(collision);
 
-        Debug.Log(collision.gameObject.tag);
+//        Debug.Log(collision.gameObject.tag);
 
         // Biến mất khi va chạm
         if (!collision.gameObject.CompareTag("Player"))

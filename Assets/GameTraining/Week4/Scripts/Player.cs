@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -16,7 +19,15 @@ public class Player : MonoBehaviour
     private bool isSideBullets = false;
 
     private int numberOfShot = 1; // Số lượng đạn được bắn ra khi click
+    [SerializeField] Slider healthBar;
+    [SerializeField] TextMeshProUGUI healthText;
 
+   
+    private void Awake() {
+        health=maxHealth;
+        healthText.text=health.ToString();
+        
+    }
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -25,7 +36,7 @@ public class Player : MonoBehaviour
         Vector3 move = new Vector3(x: horizontal, y: vertical, z: 0) * Time.deltaTime * moveSpeed;
         transform.position += move;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isShooting)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !isShooting && !EventSystem.current.IsPointerOverGameObject())
         {
             StartCoroutine(HandleShooting());
         }
@@ -66,7 +77,7 @@ public class Player : MonoBehaviour
     private void Shoot(Vector2 direction)
     {
         BaseBullet returnBullet = BulletManager.Instance.Shoot(bullet);
-        Debug.Log(returnBullet);
+//        Debug.Log(returnBullet);
         returnBullet.BulletInit(transform.position, direction);
     }    
 
@@ -82,11 +93,15 @@ public class Player : MonoBehaviour
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;
+        healthBar.value=(float) health/maxHealth;
+        healthText.text=health.ToString();
     }    
 
     public void Heal(float amount)
     {
         health += amount;
+        healthBar.value=(float) health/maxHealth;
+        healthText.text=health.ToString();
     }    
 
     public void AddShot(int number)

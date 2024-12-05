@@ -63,7 +63,7 @@ public class BulletManager : MonoBehaviour
     public BaseBullet Shoot(BaseBullet bullet)
     {
         PooledObject res = bulletPool.GetPooledObject(bullet);
-        Debug.Log(res is BaseBullet);
+//        Debug.Log(res is BaseBullet);
         return res.GetComponent<BaseBullet>();
     }
 }

@@ -6,19 +6,27 @@ using UnityEngine.UIElements;
 
 public class ButtonAction : MonoBehaviour
 {
-    [SerializeField] GameObject startPanel ;
     public GameObject enemyManager;
     public GameObject levelUpManager;
 
-   private void Start() {
-        enemyManager=EnemyManager.Instance.gameObject;
-        levelUpManager=LevelUpManager.Instance.gameObject;
+    private void Start()
+    {
+        enemyManager = EnemyManager.Instance.gameObject;
+        levelUpManager = LevelUpManager.Instance.gameObject;
+        Time.timeScale = 0;
     }
-       
-    
-    public void startGame(){
-        startPanel.SetActive(false);
+
+
+    public void startGame()
+    {
+        Time.timeScale = 1.0f;
         enemyManager.SetActive(true);
         levelUpManager.SetActive(true);
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+  
     }
 }

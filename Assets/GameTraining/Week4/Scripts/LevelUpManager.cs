@@ -42,6 +42,7 @@ public class LevelUpManager : MonoBehaviour
         if (currentEXP >= maxEXP)
         {
             LevelUp();
+            GenSkill();
         }
     }
 
@@ -52,8 +53,12 @@ public class LevelUpManager : MonoBehaviour
         currentEXP -= maxEXP;
         level++;
         lvText.text = level.ToString();
-        chooseSkillPanel.SetActive(true);
+        expBar.fillAmount = (float)currentEXP / maxEXP;
+    }
 
+    public void GenSkill()
+    {
+        chooseSkillPanel.SetActive(true);
         List<Skill> randomSkills = GetRandomSkills(skillButtons.Length);
 
         for (int i = 0; i < skillButtons.Length; i++)
@@ -94,5 +99,6 @@ public class LevelUpManager : MonoBehaviour
 
         // PlayGame
         Time.timeScale = 1;
+        EnemyManager.Instance.destroyAngel();
     }
 }
