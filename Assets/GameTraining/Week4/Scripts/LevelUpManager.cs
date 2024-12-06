@@ -67,7 +67,13 @@ public class LevelUpManager : MonoBehaviour
             Skill skill = randomSkills[i];
             skillButtons[i].transform.Find("Name").GetComponentInChildren<TextMeshProUGUI>().text = skill.skillName;
             skillButtons[i].transform.Find("Image").GetComponentInChildren<Image>().sprite = skill.icon;
-            skillButtons[i].onClick.AddListener(() => ChooseSkill(skill));
+
+            // Clear existing listeners and add the new listener
+            skillButtons[i].onClick.RemoveAllListeners();
+            skillButtons[i].onClick.AddListener(() =>
+            {
+                ChooseSkill(skill);
+            });
         }
     }
 
