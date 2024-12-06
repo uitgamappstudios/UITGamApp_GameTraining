@@ -48,8 +48,6 @@ public class LevelUpManager : MonoBehaviour
 
     public void LevelUp()
     {
-        // Pause game để chọn skill
-        Time.timeScale = 0;
         currentEXP -= maxEXP;
         level++;
         lvText.text = level.ToString();
@@ -58,6 +56,9 @@ public class LevelUpManager : MonoBehaviour
 
     public void GenSkill()
     {
+        // Pause game để chọn skill
+        Time.timeScale = 0;
+
         chooseSkillPanel.SetActive(true);
         List<Skill> randomSkills = GetRandomSkills(skillButtons.Length);
 
@@ -66,7 +67,13 @@ public class LevelUpManager : MonoBehaviour
             Skill skill = randomSkills[i];
             skillButtons[i].transform.Find("Name").GetComponentInChildren<TextMeshProUGUI>().text = skill.skillName;
             skillButtons[i].transform.Find("Image").GetComponentInChildren<Image>().sprite = skill.icon;
-            skillButtons[i].onClick.AddListener(() => ChooseSkill(skill));
+
+            // Clear existing listeners and add the new listener
+            skillButtons[i].onClick.RemoveAllListeners();
+            skillButtons[i].onClick.AddListener(() =>
+            {
+                ChooseSkill(skill);
+            });
         }
     }
 
