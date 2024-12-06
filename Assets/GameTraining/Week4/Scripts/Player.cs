@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxHealth;
     [SerializeField] private BaseBullet bullet;
-    private float health;
+    [SerializeField] private float health;
     private float coolDownTime = 0f;
 
-    private List<Skill> skillList = new List<Skill>();
+    [SerializeField]private List<Skill> skillList = new List<Skill>();
 
     private bool isShooting = false;
     private bool isSideBullets = false;

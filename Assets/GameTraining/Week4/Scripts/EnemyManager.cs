@@ -7,9 +7,11 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField] private BaseEnemy enemyPrefab;
     [SerializeField] GameObject angelPref;
+    [SerializeField] GameObject player;
     public float maxCountDown;
     public float countDown;
     GameObject angel;
+    
 
     private List<BaseEnemy> enemies = new List<BaseEnemy>();
 
@@ -53,6 +55,7 @@ public class EnemyManager : MonoBehaviour
             var enemy = Instantiate(enemyPrefab, position, Quaternion.identity, this.transform);
             enemies.Add(enemy);
         }
+        player.transform.position = new Vector2(0,-4);
     }
 
     private Vector3 GetRandomPosition()
@@ -79,6 +82,7 @@ public class EnemyManager : MonoBehaviour
     private void SpawnAngel()
     {
         angel = Instantiate(angelPref, new Vector2(0, 1), Quaternion.identity);
+        player.transform.position = new Vector2(0,-4);
     }
 
     public void destroyAngel()
