@@ -88,6 +88,11 @@ public class Player : MonoBehaviour
             skillList.Add(skill);
             skill.ApplySkill(this.gameObject);
         }
+        else
+        {
+            Debug.Log("Player've already had " + skill.skillName);
+        } 
+            
     }
 
     public void IncreaseMaxHealth(float amount)
@@ -99,9 +104,12 @@ public class Player : MonoBehaviour
 
     public void Heal(float amount)
     {
-        health += amount;
-        healthBar.value=(float) health/maxHealth;
-        healthText.text=health.ToString();
+        if (health < maxHealth)
+        {
+            health += amount;
+            healthBar.value = (float)health / maxHealth;
+            healthText.text = health.ToString();
+        }    
     }    
 
     public void AddShot(int number)

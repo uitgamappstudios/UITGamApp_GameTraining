@@ -48,8 +48,6 @@ public class LevelUpManager : MonoBehaviour
 
     public void LevelUp()
     {
-        // Pause game để chọn skill
-        Time.timeScale = 0;
         currentEXP -= maxEXP;
         level++;
         lvText.text = level.ToString();
@@ -58,6 +56,9 @@ public class LevelUpManager : MonoBehaviour
 
     public void GenSkill()
     {
+        // Pause game để chọn skill
+        Time.timeScale = 0;
+
         chooseSkillPanel.SetActive(true);
         List<Skill> randomSkills = GetRandomSkills(skillButtons.Length);
 
