@@ -8,7 +8,7 @@ public class LevelUpManager : MonoBehaviour
 {
     [SerializeField] private Skill[] allSkills;
     [SerializeField] private GameObject chooseSkillPanel;
-    [SerializeField] private Button[] skillButtons;
+    [SerializeField] private SkillItemUI[] skillButtons;
     [SerializeField] private Player player;
     [SerializeField] private Image expBar;
     [SerializeField] private TextMeshProUGUI lvText;
@@ -65,15 +65,8 @@ public class LevelUpManager : MonoBehaviour
         for (int i = 0; i < skillButtons.Length; i++)
         {
             Skill skill = randomSkills[i];
-            skillButtons[i].transform.Find("Name").GetComponentInChildren<TextMeshProUGUI>().text = skill.skillName;
-            skillButtons[i].transform.Find("Image").GetComponentInChildren<Image>().sprite = skill.icon;
 
-            // Clear existing listeners and add the new listener
-            skillButtons[i].onClick.RemoveAllListeners();
-            skillButtons[i].onClick.AddListener(() =>
-            {
-                ChooseSkill(skill);
-            });
+            skillButtons[i].ParseData(skill, this.ChooseSkill);
         }
     }
 

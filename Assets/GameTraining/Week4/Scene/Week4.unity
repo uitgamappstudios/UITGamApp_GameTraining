@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 9168096}
   - component: {fileID: 9168095}
   - component: {fileID: 9168097}
+  - component: {fileID: 9168098}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +244,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9168095}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9168098}
+        m_TargetAssemblyTypeName: SkillItemUI, Assembly-CSharp
+        m_MethodName: ClickSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9168098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9168093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0a126cb89ed714e9478f91c3ad2942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgSkillIcon: {fileID: 1928692454}
+  txtSkillName: {fileID: 2075658988}
 --- !u!1 &16575161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,8 +1165,9 @@ GameObject:
   - component: {fileID: 508052712}
   - component: {fileID: 508052711}
   - component: {fileID: 508052713}
+  - component: {fileID: 508052714}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1247,7 +1275,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 508052711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508052714}
+        m_TargetAssemblyTypeName: SkillItemUI, Assembly-CSharp
+        m_MethodName: ClickSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &508052714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508052709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0a126cb89ed714e9478f91c3ad2942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgSkillIcon: {fileID: 330205493}
+  txtSkillName: {fileID: 1094324592}
 --- !u!1 &526292542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,8 +1848,9 @@ GameObject:
   - component: {fileID: 754038698}
   - component: {fileID: 754038697}
   - component: {fileID: 754038696}
+  - component: {fileID: 754038700}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1844,7 +1899,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 754038697}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 754038700}
+        m_TargetAssemblyTypeName: SkillItemUI, Assembly-CSharp
+        m_MethodName: ClickSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &754038697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1904,6 +1971,20 @@ RectTransform:
   m_AnchoredPosition: {x: 908.3334, y: -250}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &754038700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754038695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c0a126cb89ed714e9478f91c3ad2942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgSkillIcon: {fileID: 447907450}
+  txtSkillName: {fileID: 560347110}
 --- !u!1 &931108220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2747,9 +2828,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: be5d4bad7cb70554898567923a87b9ad, type: 2}
   chooseSkillPanel: {fileID: 1272502544}
   skillButtons:
-  - {fileID: 508052713}
-  - {fileID: 9168097}
-  - {fileID: 754038696}
+  - {fileID: 508052714}
+  - {fileID: 9168098}
+  - {fileID: 754038700}
   player: {fileID: 1012443401}
   expBar: {fileID: 556937184}
   lvText: {fileID: 2067042765}
@@ -3826,14 +3907,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4050567826243728856, guid: 6531d77d6d1a00745bfefe0c9195adbd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5445803626769660320, guid: 6531d77d6d1a00745bfefe0c9195adbd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5445803626769660320, guid: 6531d77d6d1a00745bfefe0c9195adbd, type: 3}
-      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8749740071147509693, guid: 6531d77d6d1a00745bfefe0c9195adbd, type: 3}

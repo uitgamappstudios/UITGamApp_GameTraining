@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth;
     [SerializeField] private BaseBullet bullet;
     [SerializeField] private float health;
+    [SerializeField] private HealthBarUI healthBarUI;
     private float coolDownTime = 0f;
 
     [SerializeField]private List<Skill> skillList = new List<Skill>();
@@ -19,13 +20,10 @@ public class Player : MonoBehaviour
     private bool isSideBullets = false;
 
     private int numberOfShot = 1; // Số lượng đạn được bắn ra khi click
-    [SerializeField] Slider healthBar;
-    [SerializeField] TextMeshProUGUI healthText;
 
-   
     private void Awake() {
         health=maxHealth;
-        healthText.text=health.ToString();
+        healthBarUI.UpdateHealth(health, maxHealth);
         
     }
     void Update()
@@ -77,7 +75,7 @@ public class Player : MonoBehaviour
     private void Shoot(Vector2 direction)
     {
         BaseBullet returnBullet = BulletManager.Instance.Shoot(bullet);
-//        Debug.Log(returnBullet);
+        // Debug.Log(returnBullet);
         returnBullet.BulletInit(transform.position, direction);
     }    
 
@@ -98,8 +96,7 @@ public class Player : MonoBehaviour
     public void IncreaseMaxHealth(float amount)
     {
         maxHealth += amount;
-        healthBar.value=(float) health/maxHealth;
-        healthText.text=health.ToString();
+        healthBarUI.UpdateHealth(health, maxHealth);
     }    
 
     public void Heal(float amount)
@@ -107,8 +104,7 @@ public class Player : MonoBehaviour
         if (health < maxHealth)
         {
             health += amount;
-            healthBar.value = (float)health / maxHealth;
-            healthText.text = health.ToString();
+            healthBarUI.UpdateHealth(health, maxHealth);
         }    
     }    
 
