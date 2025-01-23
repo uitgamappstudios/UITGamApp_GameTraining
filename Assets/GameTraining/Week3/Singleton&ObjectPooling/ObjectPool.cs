@@ -33,7 +33,7 @@ public class ObjectPool : MonoBehaviour
     {
         PooledObject instance;
         instance = pool.Find(o => o.name == pooledObject.name);
-        Debug.Log(instance);
+//        Debug.Log(instance);
         if (!instance)
         {
             instance = Create(pooledObject);
