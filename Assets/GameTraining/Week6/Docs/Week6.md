@@ -8,7 +8,7 @@ Từ các chỉ số quái cho đến chỉ số nhân vật, màn chơi. Việc
 <img src="https://sm.ign.com/t/ign_ap/articlepage/t/the-top-10-new-hearthstone-cards/the-top-10-new-hearthstone-cards_86nm.2560.jpg" width=450 height=250>
 </div>
 
-ScriptableObject ra đời để giải quyết vấn đề này. ScriptableObject là một lớp cơ sở trong Unity, tương tự Monobehavior. Đây là loại đối tượng cho phép bạn lưu trữ một lượng lớn dữ liệu dưới dạng các file asset (tương tự hình ảnh, âm thanh,...). Thông thường, những lớp mà chúng ta tạo được kế thừa từ lớp MonoBehavior. Để nó hoạt động, ta cần gắn Script vào GameObject nào đó trong Scene. ScriptableObject thì khác, ta có thể tạo những file asset tồn tại độc lập với Scene mà vẫn có thể truy cập và chỉnh sửa dữ liệu bên trong.
+__*ScriptableObject*__ ra đời để giải quyết vấn đề này. ScriptableObject là một lớp cơ sở trong Unity, tương tự Monobehavior. Đây là loại đối tượng cho phép bạn lưu trữ một lượng lớn dữ liệu dưới dạng các file asset (tương tự hình ảnh, âm thanh,...). Thông thường, những lớp mà chúng ta tạo được kế thừa từ lớp MonoBehavior. Để nó hoạt động, ta cần gắn Script vào GameObject nào đó trong Scene. ScriptableObject thì khác, ta có thể tạo những file asset tồn tại độc lập với Scene mà vẫn có thể truy cập và chỉnh sửa dữ liệu bên trong.
 
 ### Cách thực hiện
 Đầu tiên, tạo một lớp kế thừa từ ScriptableObject, với các biến là dữ liệu cần lưu trữ. Thêm dòng `CreateAssetMenu` để có thể tạo các file asset từ nó. Trong đó, `fileName` là tên mặc định của file ScriptableObject khi tạo ra, `menuName` là tên hiển thị trong asset menu của Unity cùng các mục con nếu có, `order` là thứ tự trong menu.
@@ -75,7 +75,7 @@ Chúng ta sẽ tìm hiểu về cách save và load dữ liệu ngay sau đây.
 ## 3. Save và Load dữ liệu game
 Một trong những cách đơn giản và hiệu quả để save/load dữ liệu là sử dụng hệ thống PlayerPref. PlayerPrefs là một hệ thống lưu trữ dữ liệu đơn giản được Unity cung cấp để lưu trữ và truy xuất thông tin dưới dạng cặp **Key-Value**. Trong đó, **Key** là một chuỗi duy nhất dùng để truy xuất dữ liệu. **Value** là giá trị có thể lưu, hỗ trợ ba loại dữ liệu: `int`, `float`, `string`. Dữ liệu này được lưu vào hệ thống và nó vẫn tồn tại ngay cả khi thoát game.
 
-Để lưu dữ liệu, ta có thể gọi phương thức `SetInt`, `SetFloat` hoặc `SetString` tương ứng với kiểu dữ liệu mà ta muốn lưu, và lưu giá trị với một key thích hợp. Ví dụ: 
+Để lưu dữ liệu, ta có thể gọi phương thức `SetInt`, `SetFloat` hoặc `SetString` tương ứng với kiểu dữ liệu mà ta muốn lưu, và lưu giá trị với một **Key** thích hợp. Ví dụ: 
 
 ```C#
 //Lưu dữ liệu:
@@ -169,6 +169,9 @@ public class BulletConfig : ScriptableObject
 Khi đó, mỗi đối tượng đạn riêng biệt đều có thể truy cập vào chỉ số mặc định của mình bằng cách gọi một tham chiếu đến ScriptableObject tương ứng. Giả sử ta có một cơ chế làm tăng tốc độ của đạn trong quá trình chơi, giá trị mặc định vẫn sẽ được giữ không thay đổi mà không cần tạo thêm biến để lưu trữ giá trị gốc nó.
 
 Tuy nhiên, cách tiếp cận này cũng có một số vấn đề nhất định. Nếu số loại đạn quá nhiều, ta không thể tạo ra hết tất cả các ScriptableObject tương ứng với mỗi loại đạn. Vì vậy, chúng ta thường sẽ áp dụng một cách tiếp cận khác.
+<div align="center">
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHR5NTVlaDJvenFzMTMwbnE1ZmxtNTcxZDJrMm1qcDdkcWJxbWl6NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/j0HjChGV0J44KrrlGv/giphy.gif" width=100 height=100>
+</div>
 
 ### Cách tiếp cận 2:
 Thay vì tạo ra cho mỗi loại đạn một  ScriptableObject tương ứng, ta chỉ cần tạo ra một  ScriptableObject duy nhất với giá trị lưu trữ là danh sách chỉ số mặc định của các loại đạn.
