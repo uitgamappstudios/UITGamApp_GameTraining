@@ -72,6 +72,7 @@ Bên cạnh đó, ScriptableObject còn có nhiều ứng dụng khác ngoài qu
 Tuyệt vời, vậy chúng ta có thể áp dụng nó trong việc lưu trữ dữ liệu lâu dài của người chơi không? Câu trả lời là **KHÔNG**. Hãy thử thay đổi các thông số bên trong một ScriptableObject, thoát PlayMode và kiểm tra. Lúc này dữ liệu nhanh chóng trở về mặc định. Đó chính xác là điều sẽ xảy ra với toàn bộ tiền vàng, kinh nghiệm, vật phẩm mà người chơi cực khổ tích góp nếu họ thoát game. <img src="https://media1.tenor.com/m/Bi5t9IXWlEkAAAAC/funny-sad-emoji-getting-disintegrated-into-dust.gif" width="20" height="20">
 
 Chúng ta sẽ tìm hiểu về cách save và load dữ liệu ngay sau đây.
+
 ## 3. Save và Load dữ liệu game
 Một trong những cách đơn giản và hiệu quả để save/load dữ liệu là sử dụng hệ thống PlayerPref. PlayerPrefs là một hệ thống lưu trữ dữ liệu đơn giản được Unity cung cấp để lưu trữ và truy xuất thông tin dưới dạng cặp **Key-Value**. Trong đó, **Key** là một chuỗi duy nhất dùng để truy xuất dữ liệu. **Value** là giá trị có thể lưu, hỗ trợ ba loại dữ liệu: `int`, `float`, `string`. Dữ liệu này được lưu vào hệ thống và nó vẫn tồn tại ngay cả khi thoát game.
 
@@ -140,7 +141,7 @@ public class SaveDataManager : MonoBehaviour
 ```
 > Tips: Trong lúc thử nghiệm save/load, bạn có thể vào Edit, kéo xuống chọn Clear All PlayerPrefs để xóa dữ liệu được lưu trong PlayerPrefs nếu muốn.
 
-## 4. Thực hành: Tạo hệ thống cấu hình và lưu trữ dữ liệu bằng Scriptable Object
+## 4. Thực hành: Tạo hệ thống cấu hình và lưu trữ dữ liệu bằng ScriptableObject
 Bài toán: Dùng ScriptableObject để config cho các loại đạn, với ba thành phần là tốc độ (Speed), sát thương gây ra (Damage) và Sprite tương ứng.
 
 ### Cách tiếp cận 1:
@@ -170,7 +171,7 @@ Khi đó, mỗi đối tượng đạn riêng biệt đều có thể truy cập
 
 Tuy nhiên, cách tiếp cận này cũng có một số vấn đề nhất định. Nếu số loại đạn quá nhiều, ta không thể tạo ra hết tất cả các ScriptableObject tương ứng với mỗi loại đạn. Vì vậy, chúng ta thường sẽ áp dụng một cách tiếp cận khác.
 <div align="center">
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHR5NTVlaDJvenFzMTMwbnE1ZmxtNTcxZDJrMm1qcDdkcWJxbWl6NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/j0HjChGV0J44KrrlGv/giphy.gif" width=100 height=100>
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXBwd3VwNHg1aTlhMWo0aGJhbnM5Zzd1M296dzR5bGR4b3h6aWJldyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/WUlplcMpOCEmTGBtBW/giphy.gif" width=150 height=100>
 </div>
 
 ### Cách tiếp cận 2:

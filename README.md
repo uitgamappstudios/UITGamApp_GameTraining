@@ -44,10 +44,10 @@
 
 ### Buổi 6: Scriptable Object Configuration & Save Load
 
-- [1. Giới thiệu về Scriptable Object](#)
-- [2. Ứng dụng Scriptable Object trong việc quản lý dữ liệu](#)
-- [3. Save và Load dữ liệu game](#)
-- [4. Thực hành: Tạo hệ thống cấu hình và lưu trữ dữ liệu bằng Scriptable Object](#)
+- [1. Giới thiệu về Scriptable Object](Assets/GameTraining/Week6/Docs/Week6.md#1-Giới-thiệu-về-ScriptableObject)
+- [2. Ứng dụng Scriptable Object trong việc quản lý dữ liệu](Assets/GameTraining/Week6/Docs/Week6.md#2-Ứng-dụng-ScriptableObject-trong-việc-quản-lý-dữ-liệu)
+- [3. Save và Load dữ liệu game](Assets/GameTraining/Week6/Docs/Week6.md#3-Save-và-Load-dữ-liệu-game)
+- [4. Thực hành: Tạo hệ thống cấu hình và lưu trữ dữ liệu bằng Scriptable Object](Assets/GameTraining/Week6/Docs/Week6.md#4-Thực-hành-Tạo-hệ-thống-cấu-hình-và-lưu-trữ-dữ-liệu-bằng-ScriptableObject)
 
 ### Buổi 7: Animation & Sound
 
