@@ -133,6 +133,9 @@ GameObject:
   - component: {fileID: 320398183}
   - component: {fileID: 320398184}
   - component: {fileID: 320398185}
+  - component: {fileID: 320398186}
+  - component: {fileID: 320398187}
+  - component: {fileID: 320398189}
   m_Layer: 0
   m_Name: Angry Bird
   m_TagString: Untagged
@@ -149,8 +152,8 @@ Transform:
   m_GameObject: {fileID: 320398182}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 2.2, z: 10}
-  m_LocalScale: {x: 0.1475, y: 0.1475, z: 0.1475}
+  m_LocalPosition: {x: -0.12, y: 0.15, z: -4.3}
+  m_LocalScale: {x: 0.2529, y: 0.2529, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518789915}
@@ -219,10 +222,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -234,6 +237,71 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &320398186
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320398182}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7.355
+--- !u!114 &320398187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320398182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a804370660e3f40a208701f0ef8970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rotationSpeed: 400
+--- !u!114 &320398189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320398182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea255a524a4bbcf468cdc4d92f9100b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GravitySwitch: 49
+  AddAudioSource: 50
+  RemoveAudioSource: 51
+  MovementSwitch: 52
 --- !u!1 &368700426
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,8 +330,8 @@ Transform:
   m_GameObject: {fileID: 368700426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -2.77, z: 10}
-  m_LocalScale: {x: 16.11092, y: 0.3333, z: 1}
+  m_LocalPosition: {x: 0.04, y: -4.8411, z: 10}
+  m_LocalScale: {x: 16.11092, y: 0.2945551, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518789915}
