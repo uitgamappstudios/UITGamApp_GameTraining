@@ -4,7 +4,8 @@
 
 - [1. Hướng dẫn setup Unity với Visual Studio](#)
 - [2. Các window cơ bản trong Unity](#)
-- [3. GameObject và Component trong Unity](./docs/3_Component.md)
+- [3. GameObject và Component trong Unity](Assets/GameTraining/Week1/Docs/3_Component.md)
+- [4. Không gian trong Unity](Assets/GameTraining/Week1/Docs/4_UnitySpaces.md)
 
 ### Buổi 2: Collider & Rigidbody
 
