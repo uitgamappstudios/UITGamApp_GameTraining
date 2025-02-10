@@ -161,7 +161,7 @@ Thay vì bắt Angry Bird nín vĩnh viễn, bạn muốn bật tắt tính năn
 </p>
 
 ### 2. Thao tác với component sử dụng Script
-#### Script Component
+#### 2.1. Script Component
 Bây giờ bạn muốn Angry Bird có thể sở hữu những cử động phức tạp hơn. Lúc này, những component cơ bản vẫn chưa đủ xài, đây là khi bạn cần những component custom được định nghĩa qua Script!
 
 Cách bạn thao tác với Script component giống hệt như những bước ở phần 1. Vì bản thân Script component cũng là một component bình thường. Điểm khác biệt là bạn phải tự tạo Script.
@@ -193,10 +193,6 @@ Bây giờ bạn muốn Angry Bird di chuyển theo hai hướng trái phải v�
 - Di chuyển trái phải (thuộc tính **position** trong component **Transform**).
 - Lăn khi di chuyển (thuộc tính **rotation** trong component **Transform**).
 
-**Để Angry Bird di chuyển:** Chúng ta di dời Angry Bird theo trục X.
-
-**Để Angry Bird lăn:** Chúng ta xoay Angry Bird ngược với vector chuyển động.
-
 **Code mẫu:**
 ```csharp
 using System.Collections;
@@ -206,10 +202,11 @@ using UnityEngine;
 public class AngryBirdMovement : MonoBehaviour
 {
 
-    [Header("Settings")] // Giúp những biến này xuất hiện trong Unity Editor
+    [Header("Settings")]
     public float moveSpeed = 5f;   // Tốc độ di chuyển ngang
     public float rotationSpeed = 200f; // Tốc độ lăn
 
+    // Hàm update sẽ được gọi liên tục khi game chạy
     private void Update()
     {
         Move();
@@ -233,6 +230,170 @@ public class AngryBirdMovement : MonoBehaviour
 
 ```
 
+#### 2.2. Chỉnh sửa giá trị các biến của Script trong Unity Editor
+Khi bạn viết một script C# trong Unity, có thể cần chỉnh sửa giá trị biến trực tiếp trong Unity Editor mà không cần thay đổi mã nguồn. Điều này giúp dễ dàng tinh chỉnh gameplay mà không phải mở code mỗi lần muốn chỉnh.
+
+**Cách 1:** Sử dụng `public` để hiển thị biến trong Inspector
+```csharp
+public class AngryBirdMovement : MonoBehaviour
+{
+    public float moveSpeed = 5f;   // Tốc độ di chuyển ngang
+    public float rotationSpeed = 200f; // Tốc độ lăn
+}
+```
+
+**Cách 2:** Sử dụng `[SerializeField]` để hiển thị biến private trong Inspector
+```csharp
+public class AngryBirdMovement : MonoBehaviour
+{
+    [SerializeField] private float moveSpeed = 5f;   // Tốc độ di chuyển ngang
+    [SerializeField] private float rotationSpeed = 200f; // Tốc độ lăn
+}
+```
+Lợi ích của `[SerializeField]`:
+- Biến vẫn hiển thị trong Inspector.
+- Tránh bị chỉnh sửa ngoài ý muốn từ các script khác.
+
+Bạn cũng có thể tổ chức các biến trong Inspector bằng cách thêm chú thích và giới hạn giá trị. Chẳng hạn:
+```csharp
+public class AngryBirdMovement : MonoBehaviour
+{
+    [Header("Movement Settings")]
+    [Tooltip("Tốc độ di chuyển của nhân vật")]
+    [Range(1f, 10f)] 
+    [SerializeField] private float moveSpeed = 5f;
+    [Tooltip("Tốc độ lăn của nhân vật")]
+    [Range(1f, 10f)] 
+    [SerializeField] private float rotationSpeed = 200f;
+}
+```
+
+Sẽ được kết quả như sau trong Inspector:
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d1bf284f-99bf-4c41-8d7a-2911cb725f6d" alt="Serialize Field Example" style="width: 50%;"/>
+</p>
+
+### 3. Một số lệnh thao tác với Component bằng Script
+Trong Unity, bạn có thể **thêm, xóa, bật/tắt hoặc chỉnh sửa** Component bằng script. Sau đây là một số lệnh cơ bản mà bạn có thể cần sử dụng:
+
+#### 3.1. Lấy Component từ GameObject (`GetComponent<T>()`)
+Dùng **`GetComponent<T>()`** để truy cập vào một Component gắn trên **GameObject** và thay đổi các thông số của nó.
+
+```csharp
+public class AngryBirdComponent : MonoBehaviour
+{
+    void Update()
+    {
+        // Nhấn phím 1 để lấy Component Rigidbody2D từ GameObject và thay đổi trọng lực tác dụng lên Angry Bird
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.gravityScale = -rb.gravityScale; // Thay đổi tác dụng của trọng lực từ 1 thành -1 và ngược lại
+                Debug.Log("Đã thay đổi trọng lực Rigidbody thành " + rb.gravityScale);
+            }
+        }
+    }
+}
+```
+
+Cũng có thể dùng `TryGetComponent<T>()` thay cho `GetComponent<T>()` để **tránh lỗi** khi Component không tồn tại.
+
+```csharp
+public class AngryBirdComponent : MonoBehaviour
+{
+    void Update()
+    {
+        // Nhấn phím 1 để lấy Component Rigidbody2D từ GameObject và thay đổi trọng lực tác dụng lên Angry Bird
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)) //Chỉ thực hiện lệnh khi component tồn tại
+            {
+                rb.gravityScale = -rb.gravityScale; // Thay đổi tác dụng của trọng lực từ 1 thành -1 và ngược lại
+                Debug.Log("Đã thay đổi trọng lực Rigidbody thành " + rb.gravityScale);
+            }
+        }
+    }
+}
+```
+
+#### 3.2. Thêm Component mới (`AddComponent<T>()`)
+Bạn có thể thêm một Component mới vào GameObject trong lúc chạy game.
+
+```csharp
+public class AngryBirdComponent : MonoBehaviour
+{
+    void Update()
+    {
+        // Nhấn phím 2 để thêm Component AudioSource vào GameObject
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (TryGetComponent<AudioSource>(out AudioSource audioCheck)) //Kiểm tra xem đã có component này chưa
+            {
+                Debug.Log("Đã tồn tại AudioSource");
+            }
+            else
+            {
+                AudioSource newAudio = gameObject.AddComponent<AudioSource>(); //Nếu chưa, thêm component mới vào
+                Debug.Log("Đã thêm AudioSource mới");
+            }
+        }
+    }
+}
+```
+
+#### 3.3. Gỡ bỏ Component (`Destroy()`)**
+Dùng `Destroy(component)` để xóa một Component khỏi GameObject.
+
+```csharp
+public class AngryBirdComponent : MonoBehaviour
+{
+    void Update()
+    {
+        // Nhấn phím 3 để gỡ Component AudioSource khỏi GameObject
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (TryGetComponent<AudioSource>(out AudioSource audioCheck)) //Kiểm tra xem có tồn tại component này không
+            {
+                Destroy(audioCheck);    //Nếu tồn tại, gỡ component này
+                Debug.Log("Đã xóa AudioSource");
+            } else
+            {
+                Debug.Log("Không tìm thấy AudioSource");
+            }
+        }
+    }
+}
+```
+
+#### 3.4. Bật/Tắt Component (`enabled`)
+Dùng **`enabled = true/false`** để bật hoặc tắt Component mà không xóa nó.
+
+```csharp
+public class AngryBirdComponent : MonoBehaviour
+{
+    void Update()
+    {
+        // Nhấn phím 4 để bật/tắt Component di chuyển
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (TryGetComponent<AngryBirdMovement>(out AngryBirdMovement movement))
+            {
+                movement.enabled = !movement.enabled;
+                if (movement.enabled)
+                {
+                    Debug.Log("Đã kích hoạt khả năng di chuyển của Angry Bird");
+                } else
+                {
+                    Debug.Log("Đã vô hiệu khả năng di chuyển của Angry Bird");
+                }
+            }
+        }
+    }
+}
+```
+
 ## Một số loại Component có sẵn trong Unity
 ### 1. Transform
 ### 2. Rigidbody
@@ -241,10 +402,6 @@ public class AngryBirdMovement : MonoBehaviour
 ### 5. Camera
 ### 6. AudioSource
 
-## Hướng dẫn chạy code minh họa
-
-## Tóm lược
-### Component là gì?
-### Tại sao lại cần sử dụng Component?
+## Hướng dẫn lời giải bài tập về nhà
 ## Nguồn tham khảo
 - [Unity Documentation](https://docs.unity3d.com/2022.3/Documentation/Manual/)
