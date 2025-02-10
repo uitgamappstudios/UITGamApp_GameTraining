@@ -48,7 +48,7 @@ Và một điều tuyệt vời hơn là bạn hoàn toàn có thể tạo ra nh
 
 Đây là những Component đã được Unity định nghĩa sẵn, có sẵn trong Unity Editor để bạn có thể dễ dàng sử dụng. Các Component này bao gồm những tính năng cơ bản để xây dựng game như vật lý, hình ảnh, âm thanh, va chạm, v.v.
 
-Bạn có thể tham khảo một số Component có sẵn ở phần sau: [Một số loại Component có sẵn trong Unity](#một-số-loại-component-có-sẵn-trong-unity).
+Bạn có thể tham khảo một số Component có sẵn ở phần sau: [Một số loại Component cơ bản trong Unity](#một-số-loại-component-cơ-bản-trong-unity).
 
 ### 2. Component tự định nghĩa (Script Components)
 
@@ -343,7 +343,7 @@ public class AngryBirdComponent : MonoBehaviour
 }
 ```
 
-#### 3.3. Gỡ bỏ Component (`Destroy()`)**
+#### 3.3. Gỡ bỏ Component (`Destroy()`)
 Dùng `Destroy(component)` để xóa một Component khỏi GameObject.
 
 ```csharp
@@ -394,13 +394,122 @@ public class AngryBirdComponent : MonoBehaviour
 }
 ```
 
-## Một số loại Component có sẵn trong Unity
-### 1. Transform
-### 2. Rigidbody
-### 3. Collider
-### 4. Sprite Renderer
-### 5. Camera
-### 6. AudioSource
+## Một số loại Component cơ bản trong Unity
+### 1. Transform 
+#### 1.1. Giới thiệu
+`Transform` là **Component quan trọng nhất** trong Unity, được gắn vào **mọi GameObject**. Nó quản lý vị trí, góc quay và tỷ lệ của đối tượng trong thế giới 3D hoặc 2D.  
+
+#### 1.2. Các thuộc tính quan trọng
+Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có các giá trị khác nhau. Mỗi tham số này có thể được chỉnh sửa độc lập.
+
+| **Thuộc tính**  | **Chức năng**  | **Hàm liên quan** |
+|---------------|--------------|------------------|
+| `position`   | Vị trí của GameObject trong không gian 3D/2D. | `transform.Translate(Vector3 direction)`, `transform.position = new Vector3(x, y, z)` |
+| `rotation`   | Góc xoay của GameObject. | `transform.Rotate(Vector3 axis, float angle)`, `transform.rotation = Quaternion.Euler(x, y, z)` |
+| `localScale` | Kích thước của GameObject. | `transform.localScale = new Vector3(x, y, z)` |
+| `eulerAngles` | Góc quay tính bằng độ của GameObject. | `transform.eulerAngles = new Vector3(x, y, z)` |
+| `forward` | Hướng phía trước của GameObject dựa trên `rotation`. | `transform.forward = Vector3.forward` |
+| `right` | Hướng bên phải của GameObject. | `transform.right = Vector3.right` |
+| `up` | Hướng phía trên của GameObject. | `transform.up = Vector3.up` |
+
+**Ghi chú:** Đối với camera **Orthography**, thuộc tính position.z sẽ không ảnh hưởng đến kích thước của vật thể vì camera không mô phỏng luật xa gần. Mặt khác, nếu vật nằm ngoài phạm vi quan sát của Camera thì hình ảnh của vật sẽ không hiển thị trên màn.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ea557ba5-c8c1-4a70-a204-5ebc7a441d53" alt="Unity space" style="width: 80%;"/>
+  <p align="center"><em>Hình minh họa: Không gian của Unity</em></p>
+</p>
+
+**Xem thêm:** [Unity - Camera](https://docs.unity3d.com/2022.3/Documentation/Manual/CamerasOverview.html)
+
+### 2. Sprite Renderer  
+#### 2.1. Giới thiệu
+`Sprite Renderer` là **Component giúp hiển thị hình ảnh 2D** trong Unity. Nếu bạn làm game 2D, mọi nhân vật, vật thể trong game **đều cần** Sprite Renderer để xuất hiện trên màn hình.  
+
+#### 2.2. Các thuộc tính quan trọng
+| Thuộc tính | Chức năng |
+|------------|----------|
+| `sprite` | Hình ảnh hiển thị |
+| `color` | Màu sắc của sprite |
+| `flipX / flipY` | Lật sprite theo chiều ngang/dọc |
+| `sortingLayerID` | Xác định lớp vẽ (đối tượng nào vẽ trước) |
+| `sortingOrder` | Thứ tự hiển thị trong cùng một lớp |
+
+**Xem thêm:**: [Unity - Sprite Renderer](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/SpriteRenderer.html)  
+
+### 3. Rigidbody ([Tài liệu khóa học](#)) 
+#### 3.1. Giới thiệu
+- `Rigidbody` giúp GameObject **chịu tác động của vật lý**, như trọng lực và va chạm.  
+- Kết hợp với `Collider` để xử lý va chạm giữa các vật thể.  
+
+#### 3.2. Các thuộc tính quan trọng
+| Thuộc tính  | Chức năng  | Ví dụ |
+|-----------------|---------------|-----------|
+| `mass` | Khối lượng của vật thể, ảnh hưởng đến lực tác động. | `rigidbody.mass = 5.0f;` |
+| `drag` | Lực cản không khí, ảnh hưởng đến tốc độ giảm dần. | `rigidbody.drag = 1.0f;` |
+| `angularDrag` | Lực cản quay, ảnh hưởng đến tốc độ xoay. | `rigidbody.angularDrag = 0.5f;` |
+| `useGravity` | Bật/tắt trọng lực trên vật thể. | `rigidbody.useGravity = false;` |
+| `velocity` | Vận tốc hiện tại của vật thể. | `rigidbody.velocity = new Vector3(5, 0, 0);` |
+| `angularVelocity` | Vận tốc góc của vật thể (tốc độ quay). | `rigidbody.angularVelocity = new Vector3(0, 1, 0);` |
+| `isKinematic` | Nếu `true`, Rigidbody không bị ảnh hưởng bởi lực vật lý. | `rigidbody.isKinematic = true;` |
+| `freezeRotation` | Ngăn vật thể quay theo vật lý. | `rigidbody.freezeRotation = true;` |
+| `constraints` | Khóa chuyển động hoặc xoay theo trục nhất định. | `rigidbody.constraints = RigidbodyConstraints.FreezePositionY;` |
+
+### 4. Collider ([Tài liệu khóa học](#)) 
+#### 4.1. Giới thiệu 
+- `Collider` giúp GameObject **phát hiện va chạm** với các vật thể khác.  
+- Hoạt động tốt khi kết hợp với `Rigidbody`.  
+
+#### 4.2. Một số loại Collider phổ biến:  
+| Loại Collider  | Dùng cho 2D/3D | Hình dạng | Chức năng |
+|-----------------|-----------------|------------|-----------------|
+| `BoxCollider` | 3D | Hình hộp chữ nhật | Tạo vùng va chạm hình hộp trong không gian 3D. |
+| `SphereCollider` | 3D | Hình cầu | Tạo vùng va chạm hình cầu, phù hợp cho vật thể tròn. |
+| `CapsuleCollider` | 3D | Hình trụ (hai đầu bo tròn) | Dùng cho nhân vật, viên đạn hoặc vật thể có hình trụ. |
+| `MeshCollider` | 3D | Theo hình dạng mô hình 3D | Tạo vùng va chạm phức tạp dựa trên **Mesh** của mô hình 3D. |
+| `BoxCollider2D` | 2D | Hình chữ nhật | Tạo vùng va chạm hình hộp trong không gian 2D. |
+| `CircleCollider2D` | 2D | Hình tròn | Dùng cho đối tượng tròn trong game 2D (bóng, bánh xe, v.v.). |
+| `CapsuleCollider2D` | 2D | Hình trụ dẹt | Dùng cho nhân vật hoặc đối tượng hình viên thuốc. |
+| `PolygonCollider2D` | 2D | Đa giác | Tạo vùng va chạm phức tạp theo hình dạng sprite. |
+| `EdgeCollider2D` | 2D | Đường thẳng | Dùng làm đường biên hoặc nền tảng không có độ dày. |
+
+#### 4.4. Các thuộc tính quan trọng  
+
+| Thuộc tính  | Dùng cho 2D/3D | Chức năng | Ví dụ |
+|-----------------|-----------------|-----------------|--------------------|
+| `isTrigger` | 2D / 3D | Nếu `true`, Collider không chặn vật thể mà chỉ kích hoạt sự kiện va chạm (`OnTriggerEnter`). | `boxCollider.isTrigger = true;` |
+| `material` | 2D / 3D | Áp dụng vật liệu vật lý (`PhysicMaterial` hoặc `PhysicsMaterial2D`) để kiểm soát ma sát, độ nảy. | `boxCollider.material = myMaterial;` |
+| `size` | 2D / 3D | Kích thước của `BoxCollider` / `BoxCollider2D`. | `boxCollider.size = new Vector3(2, 2, 2);` |
+| `radius` | 2D / 3D | Bán kính của `SphereCollider` hoặc `CircleCollider2D`. | `sphereCollider.radius = 1.5f;` |
+| `center` | 3D | Điều chỉnh vị trí của Collider so với GameObject. | `boxCollider.center = new Vector3(0, 1, 0);` |
+| `offset` | 2D | Điều chỉnh vị trí của Collider 2D. | `boxCollider2D.offset = new Vector2(0, 1);` |
+| `direction` | 3D | Xác định trục của `CapsuleCollider` (`X`, `Y`, `Z`). | `capsuleCollider.direction = 1; // Y-axis` |
+| `points` | 2D | Danh sách điểm tạo thành `PolygonCollider2D`. | `polygonCollider2D.points = new Vector2[] { new Vector2(0, 0), new Vector2(1, 1) };` |
+
+### 5. AudioSource ([Tài liệu khóa học](#))
+#### 5.1. Giới thiệu  
+- `AudioSource` giúp phát âm thanh trong game.  
+- Dùng để **phát nhạc nền, hiệu ứng âm thanh** khi va chạm, bắn súng,...  
+
+#### 5.2. Các thuộc tính quan trọng  
+| Thuộc tính  | Chức năng  | Ví dụ |
+|---------------|--------------|------------------|
+| `clip`   | Gán tệp âm thanh (`AudioClip`) để phát. | `audioSource.clip = myClip;` |
+| `playOnAwake`   | Tự động phát âm thanh khi game bắt đầu. | `audioSource.playOnAwake = true;` |
+| `loop` | Lặp lại âm thanh khi phát. | `audioSource.loop = true;` |
+| `volume` | Điều chỉnh âm lượng của âm thanh (0.0 - 1.0). | `audioSource.volume = 0.5f;` |
+| `pitch` | Điều chỉnh tần số âm thanh (cao/thấp). | `audioSource.pitch = 1.2f;` |
+| `mute` | Tắt/mở âm thanh. | `audioSource.mute = true;` |
+| `spatialBlend` | Điều chỉnh âm thanh 2D (0) hoặc 3D (1). | `audioSource.spatialBlend = 1.0f;` |
+| `minDistance` | Khoảng cách tối thiểu để âm thanh phát ở âm lượng tối đa. | `audioSource.minDistance = 1.0f;` |
+| `maxDistance` | Khoảng cách tối đa mà âm thanh có thể nghe được. | `audioSource.maxDistance = 500.0f;` |
+
+#### 5.3. Các hàm quan trọng
+| **Hàm**  | **Chức năng**  | **Ví dụ** |
+|---------------|--------------|------------------|
+| `Play()` | Phát âm thanh từ đầu. | `audioSource.Play();` |
+| `Pause()` | Tạm dừng âm thanh đang phát. | `audioSource.Pause();` |
+| `UnPause()` | Tiếp tục phát âm thanh đang tạm dừng. | `audioSource.UnPause();` |
+| `Stop()` | Dừng âm thanh ngay lập tức. | `audioSource.Stop();` |
 
 ## Hướng dẫn lời giải bài tập về nhà
 ## Nguồn tham khảo
