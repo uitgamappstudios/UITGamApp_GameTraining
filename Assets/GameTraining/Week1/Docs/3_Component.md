@@ -1,3 +1,29 @@
+# Mục Lục  
+
+- [Tổng quan về GameObject và Component](#tổng-quan-về-gameobject-và-component)  
+  - [GameObject](#gameobject)  
+  - [Component](#component)  
+
+- [Phân loại Component](#phân-loại-component)  
+  - [1. Component có sẵn (Built-in Components)](#1-component-có-sẵn-built-in-components)  
+  - [2. Component tự định nghĩa (Script Components)](#2-component-tự-định-nghĩa-script-components)  
+  - [3. Sự khác biệt giữa Component có sẵn và Component tự định nghĩa](#3-sự-khác-biệt-giữa-component-có-sẵn-và-component-tự-định-nghĩa)  
+
+- [Sử dụng Component](#sử-dụng-component)  
+  - [1. Thao tác với component trên Unity Editor](#1-thao-tác-với-component-trên-unity-editor)  
+  - [2. Thao tác với component sử dụng Script](#2-thao-tác-với-component-sử-dụng-script)  
+  - [3. Một số lệnh thao tác với Component bằng Script](#3-một-số-lệnh-thao-tác-với-component-bằng-script)  
+
+- [Một số loại Component cơ bản trong Unity](#một-số-loại-component-cơ-bản-trong-unity)  
+  - [1. Transform](#1-transform)  
+  - [2. Sprite Renderer](#2-sprite-renderer)  
+  - [3. Rigidbody](#3-rigidbody-buổi-2)  
+  - [4. Collider](#4-collider-buổi-2)  
+  - [5. AudioSource](#5-audiosource-buổi-7)  
+
+- [Hướng dẫn lời giải bài tập về nhà](#hướng-dẫn-lời-giải-bài-tập-về-nhà)  
+- [Nguồn tham khảo](#nguồn-tham-khảo)  
+
 ## Tổng quan về GameObject và Component
 Để hiểu được khái niệm về **Component**, chúng ta sẽ xem xét khái niệm này cùng với một concept cũng rất quan trọng trong Unity: **GameObject**.
 
@@ -419,8 +445,6 @@ Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có 
   <p align="center"><em>Hình minh họa: Không gian của Unity</em></p>
 </p>
 
-**Xem thêm:** [Unity - Camera](https://docs.unity3d.com/2022.3/Documentation/Manual/CamerasOverview.html)
-
 ### 2. Sprite Renderer  
 #### 2.1. Giới thiệu
 `Sprite Renderer` là **Component giúp hiển thị hình ảnh 2D** trong Unity. Nếu bạn làm game 2D, mọi nhân vật, vật thể trong game **đều cần** Sprite Renderer để xuất hiện trên màn hình.  
@@ -436,7 +460,7 @@ Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có 
 
 **Xem thêm:**: [Unity - Sprite Renderer](https://docs.unity3d.com/2022.3/Documentation/ScriptReference/SpriteRenderer.html)  
 
-### 3. Rigidbody ([Tài liệu khóa học](#)) 
+### 3. Rigidbody ([Buổi 2](#)) 
 #### 3.1. Giới thiệu
 - `Rigidbody` giúp GameObject **chịu tác động của vật lý**, như trọng lực và va chạm.  
 - Kết hợp với `Collider` để xử lý va chạm giữa các vật thể.  
@@ -454,7 +478,7 @@ Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có 
 | `freezeRotation` | Ngăn vật thể quay theo vật lý. | `rigidbody.freezeRotation = true;` |
 | `constraints` | Khóa chuyển động hoặc xoay theo trục nhất định. | `rigidbody.constraints = RigidbodyConstraints.FreezePositionY;` |
 
-### 4. Collider ([Tài liệu khóa học](#)) 
+### 4. Collider ([Buổi 2](#)) 
 #### 4.1. Giới thiệu 
 - `Collider` giúp GameObject **phát hiện va chạm** với các vật thể khác.  
 - Hoạt động tốt khi kết hợp với `Rigidbody`.  
@@ -485,7 +509,7 @@ Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có 
 | `direction` | 3D | Xác định trục của `CapsuleCollider` (`X`, `Y`, `Z`). | `capsuleCollider.direction = 1; // Y-axis` |
 | `points` | 2D | Danh sách điểm tạo thành `PolygonCollider2D`. | `polygonCollider2D.points = new Vector2[] { new Vector2(0, 0), new Vector2(1, 1) };` |
 
-### 5. AudioSource ([Tài liệu khóa học](#))
+### 5. AudioSource ([Buổi 7](#))
 #### 5.1. Giới thiệu  
 - `AudioSource` giúp phát âm thanh trong game.  
 - Dùng để **phát nhạc nền, hiệu ứng âm thanh** khi va chạm, bắn súng,...  
@@ -511,6 +535,8 @@ Mỗi thuộc tính bao gồm 3 tham số trục: **X**, **Y** hoặc **Z** có 
 | `UnPause()` | Tiếp tục phát âm thanh đang tạm dừng. | `audioSource.UnPause();` |
 | `Stop()` | Dừng âm thanh ngay lập tức. | `audioSource.Stop();` |
 
-## Hướng dẫn lời giải bài tập về nhà
 ## Nguồn tham khảo
 - [Unity Documentation](https://docs.unity3d.com/2022.3/Documentation/Manual/)
+
+---
+<p align="right"> <a href="4_Unity Spaces.md"><strong>Bài tiếp theo: 4. Không gian trong Unity →</strong></a> </p>
