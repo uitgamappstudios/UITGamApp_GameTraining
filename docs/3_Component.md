@@ -103,16 +103,135 @@ public class PlayerMovement : MonoBehaviour
 | **Mục đích**              | Cung cấp các tính năng cơ bản của Unity        | Thực hiện hành vi hoặc tính năng đặc biệt cho GameObject |
 
 ## Sử dụng Component
-### Thêm Component
-#### 1. Thêm Component cơ bản
-#### 2. Thêm Script Component
-#### 3. Gỡ Component
+Vậy làm sao để "lên đồ" cho Angry Bird của bạn? Có 3 thao tác cơ bản để giúp Angry Bird "luyện công": Thêm trang bị, sửa trang bị, gỡ trang bị, ẩn trang bị.
 
-### Chỉnh sửa Component
-#### 1. Chỉnh sửa trên Unity Editor
-#### 2. Chỉnh sửa bằng Script
+### 1. Thao tác với component trên Unity Editor
 
-### Deactivate Component
+#### 1.1. Thêm Component có sẵn trong Unity Editor
+1. **Chọn GameObject** mà bạn muốn thêm component.
+2. **Mở cửa sổ Inspector** (nếu chưa có, vào **Window → General → Inspector**).
+3. Nhấn vào nút **Add Component** ở cuối cửa sổ **Inspector**.
+4. Tìm kiếm và chọn **Component** bạn muốn thêm (ví dụ: **Rigidbody, Collider, AudioSource**...).
+5. Component sẽ được thêm vào GameObject ngay lập tức.
+
+**Ví dụ:** Nếu bạn muốn thêm **Rigidbody 2D** để Angry Bird chịu tác động vật lý (biết rơi từ trên trời xuống):
+- Chọn **GameObject** mà bạn muốn thêm component, ở đây là Angry Bird.
+- Nhấn **Add Component → Rigidbody**.
+- Angry Bird của bạn đã biết rơi tự do rồi đó!
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/515068b6-0a85-4ebc-9cce-b47726eb34b2" alt="Add Component Example" style="width: 80%;"/>
+  <p align="center"><em>Hình minh họa: Thêm component vào GameObject</em></p>
+</p>
+
+#### 1.2. Chỉnh sửa Component
+- Mở **Inspector**.
+- Chỉnh sửa các giá trị của Component (ví dụ: thay đổi trọng lượng của **Rigidbody**, bật/tắt **Collider**).
+
+**Ví dụ:** Bây giờ bạn không muốn Angry Bird rơi tự do nữa, bạn muốn Angry Bird lơ lửng như siêu nhân:
+- Bạn sẽ chỉnh sửa component **Rigidbody 2D** trong số những component của Angry Bird
+- Tìm chỉ số **Gravity Scale**, đổi thành giá trị 0.
+- Angry Bird của bạn không rơi nữa, Angry Bird của bạn lơ lửng.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/58996add-1d9d-4fff-adad-3bb041bdefa2" alt="Edit Component Example" style="width: 80%;"/>
+  <p align="center"><em>Hình minh họa: Chỉnh sửa chỉ số component trên Unity Editor</em></p>
+</p>
+
+#### 1.3. Gỡ Component
+Nếu bạn lỡ bắt cái loa cho Angry Bird bằng component AudioSource, nhưng bạn phát hiện Angry Bird quá ồn ào và muốn ẻm nín? Bạn cũng có thể gỡ **Component** nếu không cần sử dụng nữa bằng vài thao tác đơn giản.
+1. Chọn **GameObject** trong **Hierarchy**.
+2. Trong **Inspector**, tìm Component muốn xóa.
+3. Nhấn vào dấu ba chấm **(⋮)** ở góc phải của Component.
+4. Chọn **Remove Component**.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/fbffa129-76df-4e9c-8496-b5092ae8859b" alt="Remove Component Example" style="width: 80%;"/>
+  <p align="center"><em>Hình minh họa: Xóa component trên Unity Editor</em></p>
+</p>
+
+#### 1.4. Vô hiệu hóa (Deactivate) Component
+Thay vì bắt Angry Bird nín vĩnh viễn, bạn muốn bật tắt tính năng hét của em ý vì biết đâu bạn có thể dùng. Lúc này, bạn có thể vô hiệu hóa Component để nó không hoạt động nhưng vẫn giữ lại mọi setting đang có của nó.
+
+- Bỏ chọn **Enabled** trong **Inspector** (nếu có).
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/93aa344e-6851-4d00-a16f-4e5a9bc62540" alt="Deactivate Component Example" style="width: 80%;"/>
+  <p align="center"><em>Hình minh họa: Vô hiệu hóa component trên Unity Editor</em></p>
+</p>
+
+### 2. Thao tác với component sử dụng Script
+#### Script Component
+Bây giờ bạn muốn Angry Bird có thể sở hữu những cử động phức tạp hơn. Lúc này, những component cơ bản vẫn chưa đủ xài, đây là khi bạn cần những component custom được định nghĩa qua Script!
+
+Cách bạn thao tác với Script component giống hệt như những bước ở phần 1. Vì bản thân Script component cũng là một component bình thường. Điểm khác biệt là bạn phải tự tạo Script.
+
+**Bước 1: Tạo Script Mới**
+
+1. Trong **Project Window**, nhấn **Create → C# Script**.
+2. Đặt tên cho script, ví dụ: `AngryBirdFall`.
+3. Mở script bằng code editor.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/249f88d8-b146-4d32-9cbd-e426f6ef96b2" alt="Create Script Component Example" style="width: 90%;"/>
+  <p align="center"><em>Hình minh họa: Tạo script AngryBirdMovement.cs</em></p>
+</p>
+
+**Bước 2: Thêm Script vào GameObject**
+
+- **Cách 1**: Kéo thả script vào GameObject trong **Hierarchy**.
+- **Cách 2**: Sử dụng **Add Component** trong **Inspector**, nhập tên script.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f41275e2-8d4f-4399-85e5-17b940998164" alt="Add Script Component Example" style="width: 50%;"/>
+  <p align="center"><em>Hình minh họa: Thêm script AngryBirdMovement vào GameObject AngryBird</em></p>
+</p>
+
+**Bước 3: Viết Script**
+Bây giờ bạn muốn Angry Bird di chuyển theo hai hướng trái phải và lăn lông lốc trên mặt đường theo hiệu lệnh của bạn. Chúng ta cần Angry Bird có thể:
+- Lắng nghe input từ bàn phím.
+- Di chuyển trái phải (thuộc tính **position** trong component **Transform**).
+- Lăn khi di chuyển (thuộc tính **rotation** trong component **Transform**).
+
+**Để Angry Bird di chuyển:** Chúng ta di dời Angry Bird theo trục X.
+
+**Để Angry Bird lăn:** Chúng ta xoay Angry Bird ngược với vector chuyển động.
+
+**Code mẫu:**
+```csharp
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AngryBirdMovement : MonoBehaviour
+{
+
+    [Header("Settings")] // Giúp những biến này xuất hiện trong Unity Editor
+    public float moveSpeed = 5f;   // Tốc độ di chuyển ngang
+    public float rotationSpeed = 200f; // Tốc độ lăn
+
+    private void Update()
+    {
+        Move();
+    }
+
+    void Move()
+    {
+        // Nhận input từ bàn phím (A/D hoặc phím mũi tên)
+        float moveInput = Input.GetAxis("Horizontal");
+
+        if (moveInput != 0)
+        {
+            // Di chuyển trái/phải (thay đổi vị trí theo trục X)
+            transform.position += Vector3.right * moveInput * moveSpeed * Time.deltaTime;
+
+            // Lăn Angry Bird theo hướng di chuyển
+            transform.Rotate(Vector3.forward, -moveInput * rotationSpeed * Time.deltaTime);
+        }
+    }
+}
+
+```
 
 ## Một số loại Component có sẵn trong Unity
 ### 1. Transform
