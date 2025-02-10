@@ -1,5 +1,6 @@
-# Mục Lục  
+# GameObject và Component trong Unity 
 
+## Mục lục
 - [Tổng quan về GameObject và Component](#tổng-quan-về-gameobject-và-component)  
   - [GameObject](#gameobject)  
   - [Component](#component)  
