@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -9,13 +10,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float friction = 15f;      // Lực ma sát khi không nhấn phím
     private Vector3 velocity = Vector3.zero; // Vận tốc hiện tại
 
-    private GameObject[] enemies = null;
+    private GameObject[] enemies = null; //Tập hợp enemy 
     [SerializeField] private GameObject prefabBaseBullet;
+    [SerializeField] private float shootCooldown = 0.3f; //Chu kì bắn đạn
+    private float timer = 0;
 
     void Start()
     {
-        //Tạo tập hợp Enemy
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //Tìm các enemy trên scene 
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     void Update()
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
         Vector3 inputDirection = Vector3.zero;
 
         // Kiểm tra các phím điều khiển
-        if (Input.GetKey(KeyCode.W)) inputDirection.y = 1;
+        if (Input.GetKey(KeyCode.W)) inputDirection.y += 1;
         if (Input.GetKey(KeyCode.S)) inputDirection.y -= 1;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1;
@@ -55,8 +58,10 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        // Chỉ bắn khi player đứng yên và có ít nhất 1 kẻ địch
-        if (velocity == Vector3.zero && enemies.Length > 0)
+        timer += Time.deltaTime;
+
+        // Chỉ bắn khi player đứng yên, có ít nhất 1 kẻ địch và đến chu kì bắn
+        if (velocity == Vector3.zero && enemies.Length != 0  && timer >= shootCooldown)
         {
             // Chọn ngẫu nhiên một kẻ địch trong danh sách
             GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
@@ -72,6 +77,8 @@ public class PlayerController : MonoBehaviour
                 // Thiết lập hướng bay cho viên đạn
                 bullet.GetComponent<BaseBullet>().SetDirection(direction);
             }
+
+            timer = 0; //Đặt lại timer sau khi bắn
         }
     }
 }
