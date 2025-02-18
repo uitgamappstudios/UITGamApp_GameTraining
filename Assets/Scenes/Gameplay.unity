@@ -222,6 +222,7 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 15
   friction: 15
+  velocity: {x: 0, y: 0, z: 0}
   prefabBaseBullet: {fileID: 9175034089918255610, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
   shootCooldown: 0.3
 --- !u!1001 &762945148
@@ -625,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6257513543688773358, guid: 53814c0b22db1ef42a255818f9344305, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.58
       objectReference: {fileID: 0}
     - target: {fileID: 6257513543688773358, guid: 53814c0b22db1ef42a255818f9344305, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 6257513543688773358, guid: 53814c0b22db1ef42a255818f9344305, type: 3}
       propertyPath: m_LocalPosition.z

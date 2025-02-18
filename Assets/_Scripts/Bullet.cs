@@ -3,7 +3,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class BaseBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Vector3 direction;
     [SerializeField] private float speed;
