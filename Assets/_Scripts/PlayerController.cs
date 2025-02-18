@@ -13,9 +13,19 @@ public class PlayerController : MonoBehaviour
     private GameObject[] enemies = null; //Tập hợp enemy 
     [SerializeField] private GameObject prefabBaseBullet;
     [SerializeField] private float shootCooldown = 0.3f; //Chu kì bắn đạn
-    private float timer = 0; 
+    private float timer = 0;
 
-    void Update()
+    private float _cam_width;
+    private float _cam_height;
+
+    void Start()
+    {
+        // Lấy dài rộng của camera
+        _cam_height = Camera.main.orthographicSize * 2;
+        _cam_width = _cam_height * Camera.main.aspect;
+    }
+
+        void Update()
     {
         //Tìm các enemy trên scene 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -89,6 +99,14 @@ public class PlayerController : MonoBehaviour
 
         // Di chuyển nhân vật
         transform.position += velocity * Time.deltaTime - (0.5f * acceleration * inputNormalized * Time.deltaTime * Time.deltaTime);
+
+        //Giới hạn vị trí Player
+        Vector3 new_positon = transform.position;
+        // Giới hạn trái phải
+        new_positon.x = Mathf.Min(Mathf.Max(-_cam_width / 2, new_positon.x + velocity.x * Time.deltaTime), _cam_width / 2);
+        // Giới hạn trên dưới
+        new_positon.y = Mathf.Min(Mathf.Max(-_cam_height / 2, new_positon.y + velocity.y * Time.deltaTime), _cam_height / 2);
+        transform.position = new_positon;
     }
 
 
