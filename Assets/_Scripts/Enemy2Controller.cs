@@ -13,7 +13,7 @@ public class Enemy2Controller : MonoBehaviour
     private float _currentHealth;
     private GameObject _target;
     private Vector3 _velocity = Vector3.zero;
-    [SerializeField] private float speed;
+    [SerializeField] private float _normal_speed;
     void Start()
     {
         _currentHealth = _health;
@@ -28,7 +28,7 @@ public class Enemy2Controller : MonoBehaviour
     private void Move()
     {
         Vector3 direction = _target.transform.position - transform.position;
-        _velocity = direction.normalized * this.speed;
+        _velocity = direction.normalized * _normal_speed;
 
         // Tính tốc độ hiện tại 
         float speed = Mathf.Sqrt(_velocity.x * _velocity.x + _velocity.y * _velocity.y + _velocity.z * _velocity.z);

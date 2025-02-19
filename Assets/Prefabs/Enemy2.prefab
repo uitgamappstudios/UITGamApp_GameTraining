@@ -175,4 +175,4 @@ MonoBehaviour:
   _max_speed: 2
   _prefabBaseBullet: {fileID: 7190693981966841074, guid: e5144cb275ced8e4db463e0f147fea2a, type: 3}
   _shootCooldown: 1
-  speed: 1
+  _normal_speed: 1

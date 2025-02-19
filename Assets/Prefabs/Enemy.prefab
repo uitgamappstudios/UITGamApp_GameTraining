@@ -102,7 +102,7 @@ MonoBehaviour:
   _max_speed: 5
   _health: 0
   _angle_offset: 31.5
-  speed: 3
+  _normal_speed: 3
 --- !u!50 &8417732920022745564
 Rigidbody2D:
   serializedVersion: 4
