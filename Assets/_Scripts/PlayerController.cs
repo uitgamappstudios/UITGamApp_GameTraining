@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {

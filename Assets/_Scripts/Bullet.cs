@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEditor.Tilemaps;
-using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
