@@ -6,18 +6,22 @@ public class EnemyController : MonoBehaviour
 {
     private Transform _player;
     [SerializeField] private float _max_speed = 5f;
+    [SerializeField] private float _health;
     [Range(0f, 180f)][SerializeField] private float _angle_offset;
     private float _velocity_multiplier;
+    private float _currentHealth;
     private Vector3 _velocity = Vector3.zero;
 
     void Start()
     {
+        _currentHealth = _health;
         _velocity_multiplier = Random.Range(1.5f, 5f);
         _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
+        if (_player == null) return;
         LookAtPlayer();
         Move();
     }
@@ -45,6 +49,13 @@ public class EnemyController : MonoBehaviour
 
         transform.position += _velocity * Time.deltaTime;
     }
-
-
+    public void ModifyHealth(float delta)
+    {
+        _currentHealth += delta;
+        if (_currentHealth < 0) Die();
+    }
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
 }
