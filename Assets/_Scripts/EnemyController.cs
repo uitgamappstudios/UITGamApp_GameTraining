@@ -8,14 +8,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _max_speed = 5f;
     [SerializeField] private float _health;
     [Range(0f, 180f)][SerializeField] private float _angle_offset;
-    private float _velocity_multiplier;
+    [SerializeField] private float speed;
     private float _currentHealth;
     private Vector3 _velocity = Vector3.zero;
 
     void Start()
     {
         _currentHealth = _health;
-        _velocity_multiplier = Random.Range(1.5f, 5f);
         _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -36,7 +35,7 @@ public class EnemyController : MonoBehaviour
     private void Move()
     {
         Vector3 direction = _player.position - transform.position;
-        _velocity = direction.normalized * _velocity_multiplier;
+        _velocity = direction.normalized * this.speed;
 
         // Tính tốc độ hiện tại 
         float speed = Mathf.Sqrt(_velocity.x * _velocity.x + _velocity.y * _velocity.y + _velocity.z * _velocity.z);

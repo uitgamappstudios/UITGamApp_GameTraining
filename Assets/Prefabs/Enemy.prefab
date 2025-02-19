@@ -100,8 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _max_speed: 5
-  health: 2
+  _health: 0
   _angle_offset: 31.5
+  speed: 3
 --- !u!50 &8417732920022745564
 Rigidbody2D:
   serializedVersion: 4
