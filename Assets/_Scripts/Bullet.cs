@@ -28,7 +28,9 @@ public class Bullet : MonoBehaviour
     {
         EnemyController enemy=collision.GetComponent<EnemyController>();
         Enemy2Controller enemy2 = collision.GetComponent<Enemy2Controller>();
+	Enemy3Controller enemy3 = collision.GetComponent<Enemy3Controller>();
         if (enemy != null) enemy.ModifyHealth(-damage);
         if (enemy2 != null) enemy2.ModifyHealth(-damage);
+	if (enemy3 != null) enemy3.ModifyHealth(-damage);
     }
 }
