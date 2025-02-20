@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private GameObject _spawnee;
     [SerializeField] private int _spawnAmount;
     Vector2 GetRandomPositionInView()

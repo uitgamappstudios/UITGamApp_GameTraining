@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Enemy3Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private GameObject _prefabBaseBullet;
     [SerializeField] private float _shootCooldown = 0.3f;
     [SerializeField] private float _health;
-    [SerializeField] private int _angleAmount = 6;
+    [SerializeField] private int _bulletCount = 6;
     private float _currentHealth;
     private float _timer = 0;
 
@@ -16,7 +15,7 @@ public class Enemy3Controller : MonoBehaviour
     }
     void Shoot()
     {
-        int angle = 360 / _angleAmount;
+        int angle = 360 / _bulletCount;
         for (int i = 0; i < 360; i += angle)
         {
             GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
@@ -24,7 +23,6 @@ public class Enemy3Controller : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(_timer >= _shootCooldown)
