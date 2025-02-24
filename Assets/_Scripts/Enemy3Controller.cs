@@ -1,18 +1,12 @@
 using UnityEngine;
 
-public class Enemy3Controller : MonoBehaviour
+public class Enemy3Controller : BaseEnemyController
 {
     [SerializeField] private GameObject _prefabBaseBullet;
     [SerializeField] private float _shootCooldown = 0.3f;
-    [SerializeField] private float _health;
     [SerializeField] private int _bulletCount = 6;
-    private float _currentHealth;
     private float _timer = 0;
 
-    void Start()
-    {
-        _currentHealth = _health;
-    }
     void Shoot()
     {
         int angle = 360 / _bulletCount;
@@ -31,14 +25,5 @@ public class Enemy3Controller : MonoBehaviour
             _timer = 0;
         }
         _timer += Time.deltaTime;
-    }
-    public void ModifyHealth(float delta)
-    {
-        _currentHealth += delta;
-        if (_currentHealth < 0) Die();
-    }
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }

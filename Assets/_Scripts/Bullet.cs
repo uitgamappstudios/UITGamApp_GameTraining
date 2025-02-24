@@ -1,23 +1,9 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BaseBullet
 {
-    private Vector3 direction;
-    [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    public void SetDirection(Vector3 direction)
-    {
-        this.direction = direction;
-    }
-
-    void Update()
-    {
-        // Di chuyển viên đạn theo hướng đã được thiết lập
-        transform.position += direction * speed * Time.deltaTime;
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Enemy"))
         {
             OnCollision(collision);
