@@ -153,10 +153,11 @@ public class PlayerController : MonoBehaviour
                 directionNormalized = direction / magnitude;
 
             // Tạo viên đạn từ prefab
-            GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
+            Bullet bullet = (Bullet)BulletManager.Instance.GetBullet(BulletManager.BulletType.PlayerBullet);
+            bullet.transform.position = transform.position;
 
             // Thiết lập hướng bay cho viên đạn
-            bullet.GetComponent<Bullet>().SetDirection(directionNormalized);
+            bullet.SetDirection(directionNormalized);
 
             // Đặt lại timer sau khi bắn
             _timer = 0; 

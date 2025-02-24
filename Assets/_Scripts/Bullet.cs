@@ -7,7 +7,7 @@ public class Bullet : BaseBullet
         if (collision.CompareTag("Enemy"))
         {
             OnCollision(collision);
-            Destroy(gameObject);
+            BulletManager.Instance.ReturnBullet(this, BulletManager.BulletType.PlayerBullet);
         }
     }
     private void OnCollision(Collider2D collision)

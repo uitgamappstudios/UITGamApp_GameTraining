@@ -2,7 +2,7 @@
 
 public class Enemy2Controller : BaseEnemyController
 {
-    [SerializeField] private GameObject _prefabBaseBullet;
+    //[SerializeField] private GameObject _prefabBaseBullet;
     [SerializeField] private float _shootCooldown = 0.3f; //Chu kì bắn đạn
     private float _timer = 0;
     void Update()
@@ -31,10 +31,11 @@ public class Enemy2Controller : BaseEnemyController
                     directionNormalized = direction / magnitude;
 
                 // Tạo viên đạn từ prefab
-                GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
+                EnemyBullet bullet = (EnemyBullet)BulletManager.Instance.GetBullet(BulletManager.BulletType.EnemyBullet);
+                bullet.transform.position = transform.position;
 
                 // Thiết lập hướng bay cho viên đạn
-                bullet.GetComponent<EnemyBullet>().SetDirection(directionNormalized);
+                bullet.SetDirection(directionNormalized);
             }
 
             _timer = 0; // Đặt lại timer sau khi bắn

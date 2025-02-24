@@ -9,7 +9,7 @@ public class EnemyBullet : BaseBullet
         if (collision.CompareTag("Player"))
         {
             OnCollision(collision.GetComponent<PlayerController>());
-            Destroy(gameObject);
+            BulletManager.Instance.ReturnBullet(this, BulletManager.BulletType.EnemyBullet);
         }
     }
     private void OnCollision(PlayerController player)

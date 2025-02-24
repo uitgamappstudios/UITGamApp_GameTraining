@@ -12,8 +12,10 @@ public class Enemy3Controller : BaseEnemyController
         int angle = 360 / _bulletCount;
         for (int i = 0; i < 360; i += angle)
         {
-            GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<EnemyBullet>().SetDirection(new Vector3(Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad), 0));
+            //GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
+            EnemyBullet bullet = (EnemyBullet)BulletManager.Instance.GetBullet(BulletManager.BulletType.EnemyBullet);
+            bullet.transform.position = transform.position;
+            bullet.SetDirection(new Vector3(Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad), 0));
         }
     }
 
