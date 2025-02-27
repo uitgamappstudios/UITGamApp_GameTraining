@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour
@@ -26,6 +24,7 @@ public class BulletManager : MonoBehaviour
 
     public List<BaseBullet> _pfBullets;
     public Dictionary<int, Queue<BaseBullet>> bulletPool;
+    private int _reloadAmount = 10;
 
     void Start()
     {
@@ -43,17 +42,22 @@ public class BulletManager : MonoBehaviour
                 bulletPool[i] = new Queue<BaseBullet>();
         }
 
-        int amount = 10;
         for (int i = 0; i < _pfBullets.Count; i++)
         {
-            for (int j = 0; j < amount; j++)
-            {
-                BaseBullet bullet = Instantiate(_pfBullets[i], this.transform);
-                bullet.gameObject.SetActive(false);
-                bulletPool[i].Enqueue(bullet);
-            }
+            ReloadPooling(i);
         }
     }
+
+    void ReloadPooling(int index)
+    {
+        for (int j = 0; j < _reloadAmount; j++)
+        {
+            BaseBullet bullet = Instantiate(_pfBullets[index], this.transform);
+            bullet.gameObject.SetActive(false);
+            bulletPool[index].Enqueue(bullet);
+        }
+    }
+
 
     // Lấy 1 viên đạn ra để bắn
     public BaseBullet GetBullet(BulletType type)
@@ -61,7 +65,7 @@ public class BulletManager : MonoBehaviour
         int index = (int)type;
         if (bulletPool[index].Count <= 0)
         {
-            InitPooling();
+            ReloadPooling(index);
         }
         BaseBullet b = bulletPool[index].Dequeue();
         b.gameObject.SetActive(true);

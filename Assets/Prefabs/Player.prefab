@@ -104,8 +104,7 @@ MonoBehaviour:
   _friction: 15
   _health: 10
   _velocity: {x: 0, y: 0, z: 0}
-  _prefabBaseBullet: {fileID: 9175034089918255610, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
-  _shootCooldown: 0.3
+  _shootCooldown: 0.5
 --- !u!50 &8090149786205576069
 Rigidbody2D:
   serializedVersion: 4

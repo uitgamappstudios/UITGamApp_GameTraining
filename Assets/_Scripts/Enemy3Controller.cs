@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Enemy3Controller : BaseEnemyController
 {
-    [SerializeField] private GameObject _prefabBaseBullet;
     [SerializeField] private float _shootCooldown = 0.3f;
     [SerializeField] private int _bulletCount = 6;
     private float _timer = 0;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,15 +24,11 @@ public class SkillManager : MonoBehaviour
     {
         SetUpPlayer();
         AddSkill(new MultiShotSkill());
-        AddSkill(new TracingBulletSkill());
-        AddSkill(new RotatingBulletSkill());
     }
 
     private void Update()
     {
         UseSkill("MultiShot");
-        UseSkill("TracingBullet");
-        UseSkill("RotatingBullet");
     }
 
     public void AddSkill(BaseSkill skill)

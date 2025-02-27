@@ -91,8 +91,6 @@ MonoBehaviour:
   _pfBullets:
   - {fileID: 3013010749667919579, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
   - {fileID: 6564793718201934256, guid: e5144cb275ced8e4db463e0f147fea2a, type: 3}
-  - {fileID: 76744351244306855, guid: f9c2a758dbb51544388222f9364a3996, type: 3}
-  - {fileID: 2785963134344765919, guid: 55a089432f037a74c9ee7f6a9e8c8255, type: 3}
 --- !u!1 &5754499455957132532
 GameObject:
   m_ObjectHideFlags: 0

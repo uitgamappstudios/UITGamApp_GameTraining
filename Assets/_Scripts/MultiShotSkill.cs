@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class MultiShotSkill : BaseSkill
+﻿public class MultiShotSkill : BaseSkill
 {
     // Gọi hàm khởi tạo của lớp cha với tên "MultiShot"
     public MultiShotSkill() : base("MultiShot") { }

@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 Velocity => _velocity;
 
     private GameObject[] _enemies = null; //Tập hợp enemy 
-    [SerializeField] private GameObject _prefabBaseBullet;      // Prefab của viên đạn
     [SerializeField] private float _shootCooldown = 0.3f; //Chu kì bắn đạn
     private float _timer = 0;
 
@@ -161,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 directionNormalized = direction / magnitude;
 
             // Tạo viên đạn từ prefab
-            Bullet bullet = (Bullet)BulletManager.Instance.GetBullet(BulletManager.BulletType.PlayerBullet);
+            PlayerBullet bullet = (PlayerBullet)BulletManager.Instance.GetBullet(BulletManager.BulletType.PlayerBullet);
             bullet.transform.position = transform.position;
 
             // Thiết lập hướng bay cho viên đạn
