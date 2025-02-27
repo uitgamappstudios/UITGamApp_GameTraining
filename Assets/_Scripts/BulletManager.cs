@@ -8,7 +8,9 @@ public class BulletManager : MonoBehaviour
     public enum BulletType
     {
         PlayerBullet,
-        EnemyBullet
+        EnemyBullet,
+        TracingBullet,
+        RotatingBullet
     }
     #region Singleton
     private static BulletManager _instance;

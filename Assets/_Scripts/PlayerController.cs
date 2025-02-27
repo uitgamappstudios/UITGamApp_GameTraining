@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _friction = 15f;      // Lực ma sát khi không nhấn phím
     [SerializeField] private float _health;     // Máu của player   
     [SerializeField] private Vector3 _velocity = Vector3.zero; // Vận tốc hiện tại
+    public Vector3 Velocity => _velocity;
 
     private GameObject[] _enemies = null; //Tập hợp enemy 
     [SerializeField] private GameObject _prefabBaseBullet;      // Prefab của viên đạn

@@ -9,9 +9,9 @@ public class BaseBullet : MonoBehaviour
     [SerializeField] protected float damage;
     public void SetDirection(Vector3 direction)
     {
-        this.direction = direction;
+        this.direction = direction.normalized;
     }
-    void Update()
+    protected virtual void Update()
     {
         // Di chuyển viên đạn theo hướng đã được thiết lập
         transform.position += direction * speed * Time.deltaTime;
