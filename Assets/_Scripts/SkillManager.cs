@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    [SerializeField] private PlayerController player;
-
+    private PlayerController player;
     public PlayerController Player => player;
 
     private Dictionary<string, BaseSkill> skills = new Dictionary<string, BaseSkill>();
@@ -24,6 +23,7 @@ public class SkillManager : MonoBehaviour
 
     private void Start()
     {
+        SetUpPlayer();
         AddSkill(new MultiShotSkill());
     }
 
@@ -55,4 +55,9 @@ public class SkillManager : MonoBehaviour
 
         skills[skillName].Activate();
     }    
+
+    public void SetUpPlayer()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
 }

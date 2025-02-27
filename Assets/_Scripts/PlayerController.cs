@@ -18,9 +18,15 @@ public class PlayerController : MonoBehaviour
     private float _currentHealth;
     private GameObject _target;
     private bool _isEnable;
+
+    private bool _enemiesCleared = false;
+    public bool EnemiesCleared => _enemiesCleared;
+
     void Start()
     {
         _isEnable = true;
+        _enemiesCleared = false;
+
         // Khởi tạo lượng máu cho player
         _currentHealth = _health;
 
@@ -130,6 +136,7 @@ public class PlayerController : MonoBehaviour
         }
         _target = _enemies[Random.Range(0, _enemies.Length)];
     }
+
     public void Shoot()
     {
         _timer += Time.deltaTime;
@@ -174,9 +181,11 @@ public class PlayerController : MonoBehaviour
         _isEnable = false;
         Destroy(gameObject);
     }
+
     private void Win()
     {
         Debug.Log("You Win");
-        _isEnable = false;
+        _enemiesCleared = true;
+        RoomManager.Instance.CheckSwitchRoom();
     }
 }
