@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
+    // Enum để phân biệt loại đạn
     public enum BulletType
     {
         PlayerBullet,
@@ -36,6 +37,7 @@ public class BulletManager : MonoBehaviour
         if (bulletPool == null)
             bulletPool = new Dictionary<int, Queue<BaseBullet>>();
 
+        // Tạo từng pool cho từng loại đạn
         for (int i = 0; i < _pfBullets.Count; i++)
         {
             if (!bulletPool.ContainsKey(i) || bulletPool[i] == null)
@@ -43,9 +45,7 @@ public class BulletManager : MonoBehaviour
         }
 
         for (int i = 0; i < _pfBullets.Count; i++)
-        {
             ReloadPooling(i);
-        }
     }
 
     void ReloadPooling(int index)
@@ -63,10 +63,11 @@ public class BulletManager : MonoBehaviour
     public BaseBullet GetBullet(BulletType type)
     {
         int index = (int)type;
+
+        // Nạp lại đạn nếu hết đạn trong pool
         if (bulletPool[index].Count <= 0)
-        {
             ReloadPooling(index);
-        }
+
         BaseBullet b = bulletPool[index].Dequeue();
         b.gameObject.SetActive(true);
         return b;
