@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossSM : BaseEnemyController
 {
+    #region StateMachine
     public IState CurrentState { get; private set; }
     public IState _previousState;
 
+    //đảm bảo từ một trạng thái chỉ chuyển được sang một trạng thái mới
     bool _inTransition = false;
 
     public void ChangeState(IState newState)
     {
-        // ensure we're ready for a new state
+        // chuyển trạng thái khi có trạng thái sẵn sàng
         if (CurrentState == newState || _inTransition)
             return;
 
@@ -20,6 +20,7 @@ public class BossSM : BaseEnemyController
 
     public void RevertState()
     {
+        // chuyển lại trạng thái trước đó
         if (_previousState != null)
             ChangeState(_previousState);
     }
@@ -27,42 +28,40 @@ public class BossSM : BaseEnemyController
     void ChangeStateRoutine(IState newState)
     {
         _inTransition = true;
-        // begin our exit sequence, to prepare for new state
+        // gọi exit của trạng thái hiện tại, chuẩn bị chuyển trạng thái
         if (CurrentState != null)
             CurrentState.Exit();
-        // save our current state, in case we want to return to it
-        if (_previousState != null)
-            _previousState = CurrentState;
+        // lưu trạng thái trước để quay lại khi cần
+        _previousState = CurrentState;
 
         CurrentState = newState;
 
-        // begin our new Enter sequence
+        // enter trạng thái mới
         if (CurrentState != null)
             CurrentState.Enter();
 
         _inTransition = false;
     }
 
-    // pass down Update ticks to States, since they won't have a MonoBehaviour
+    // update cho các trạng thái, gọi tick vì state không phải là MonoBehaviour
     public void Update()
     {
-        // simulate update ticks in states
+        if(_previousState!=null) Debug.Log(_previousState.GetType().ToString());
         if (CurrentState != null && !_inTransition)
             CurrentState.Tick();
     }
 
     public void FixedUpdate()
     {
-        // simulate fixedUpdate ticks in states
         if (CurrentState != null && !_inTransition)
             CurrentState.FixedTick();
     }
-
+    #endregion
     public BossIdleState idleState;
     public BossAttackState attackState;
     public BossSpawnerState spawnerState;
     public BossAttack2State attack2State;
-
+    
     [SerializeField] GameObject spawnee;
     [SerializeField] GameObject player;
     [SerializeField] private float timeToShoot = 1;
