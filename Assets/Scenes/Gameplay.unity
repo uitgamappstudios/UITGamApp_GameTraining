@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7089e4d15ed28ac40905fe6a31c0dad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomNames: []
 --- !u!4 &114853994
 Transform:
   m_ObjectHideFlags: 0
@@ -223,17 +224,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1368e1d69165f154987b470a1f65b8b7, type: 3}
---- !u!114 &189580627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5130316849074998687, guid: 9cd0e2581da21da44b372cf89625ea23, type: 3}
-  m_PrefabInstance: {fileID: 8830076140434175392}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986d721007b17e04ea9ca74661bf3511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &602383984
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +271,8 @@ MonoBehaviour:
   _pfBullets:
   - {fileID: 3013010749667919579, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
   - {fileID: 6564793718201934256, guid: e5144cb275ced8e4db463e0f147fea2a, type: 3}
+  - {fileID: 76744351244306855, guid: f9c2a758dbb51544388222f9364a3996, type: 3}
+  - {fileID: 2785963134344765919, guid: 55a089432f037a74c9ee7f6a9e8c8255, type: 3}
 --- !u!1001 &762945148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -664,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabb6455c6803e049bfeaa40ed44ca4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 189580627}
 --- !u!1 &2118999738
 GameObject:
   m_ObjectHideFlags: 0

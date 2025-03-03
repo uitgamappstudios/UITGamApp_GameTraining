@@ -9,7 +9,7 @@ public class BaseEnemyController : MonoBehaviour
     protected Vector3 _velocity = Vector3.zero;
     [SerializeField] protected float _normal_speed;
 
-    protected void Start()
+    protected virtual void Start()
     {
         _currentHealth = _health;
         _target = GameObject.FindGameObjectWithTag("Player");
