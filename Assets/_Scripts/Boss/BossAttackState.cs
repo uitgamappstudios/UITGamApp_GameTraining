@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossAttackState : IState
@@ -20,7 +18,7 @@ public class BossAttackState : IState
     }
     public void Enter()
     {
-        Debug.Log("Attack");
+
     }
 
     public void Exit()

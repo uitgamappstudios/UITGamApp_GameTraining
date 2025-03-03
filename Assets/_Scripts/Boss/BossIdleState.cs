@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BossIdleState : IState
@@ -18,7 +16,7 @@ public class BossIdleState : IState
 
     public void Enter()
     {
-        Debug.Log("Idle");
+
     }
 
     public void Exit()
