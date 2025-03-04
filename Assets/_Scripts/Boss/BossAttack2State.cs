@@ -1,47 +1,25 @@
 using UnityEngine;
 
-public class BossAttack2State : IState
+public class BossAttack2State : BossState
 {
-    BossSM bossSM;
-    float distance;
-    float timeToShoot;
-    GameObject player;
-    GameObject boss;
     float curTime = 0;
-    public BossAttack2State(BossSM _bossSM, GameObject player, GameObject boss, float distance, float timeToShoot)
+    public BossAttack2State(BossSM _bossSM) : base(_bossSM)
     {
         bossSM = _bossSM;
-        this.player = player;
-        this.boss = boss;
-        this.distance = distance;
-        this.timeToShoot = timeToShoot;
     }
 
-    public void Enter()
+    public override void Tick()
     {
-    }
-
-    public void Exit()
-    {
-    }
-
-    public void FixedTick()
-    {
-        //
-    }
-
-    public void Tick()
-    {
-        if (player != null)
+        if (bossSM.player != null)
         {
             bossSM.MoveToPlayer();
-            if(curTime >= timeToShoot)
+            if(curTime >= bossSM.timeToShoot * 0.75f)
             {
                 bossSM.ShootMultipleBullet();
                 curTime = 0;
             }else curTime += Time.deltaTime;
 
-            if (Vector2.Distance(boss.transform.position, player.transform.position) > distance)
+            if (Vector2.Distance(bossSM.transform.position, bossSM.player.transform.position) > bossSM.attackRange * 1.75f)
             {
                 bossSM.ChangeState(bossSM.spawnerState);
             }

@@ -46,7 +46,6 @@ public class BossSM : BaseEnemyController
     // update cho các trạng thái, gọi tick vì state không phải là MonoBehaviour
     public void Update()
     {
-        if(_previousState!=null) Debug.Log(_previousState.GetType().ToString());
         if (CurrentState != null && !_inTransition)
             CurrentState.Tick();
     }
@@ -62,18 +61,18 @@ public class BossSM : BaseEnemyController
     public BossSpawnerState spawnerState;
     public BossAttack2State attack2State;
     
-    [SerializeField] GameObject spawnee;
-    [SerializeField] GameObject player;
-    [SerializeField] private float timeToShoot = 1;
-    [SerializeField] private float attackRange = 10f;
-    [SerializeField] private int bulletCount = 5;
+    [SerializeField] public GameObject spawnee;
+    [SerializeField] public GameObject player;
+    [SerializeField] public float timeToShoot = 1;
+    [SerializeField] public float attackRange = 10f;
+    [SerializeField] public int bulletCount = 5;
 
     public void Awake()
     {
-        idleState = new BossIdleState(this, player, gameObject, attackRange);
-        attackState = new BossAttackState(this, player, gameObject, attackRange, timeToShoot);
-        spawnerState = new BossSpawnerState(this, player, gameObject, attackRange);
-        attack2State = new BossAttack2State(this, player, gameObject, attackRange, timeToShoot/2);
+        idleState = new BossIdleState(this);
+        attackState = new BossAttackState(this);
+        spawnerState = new BossSpawnerState(this);
+        attack2State = new BossAttack2State(this);
     }
 
     public float GetHealthPercentage()
