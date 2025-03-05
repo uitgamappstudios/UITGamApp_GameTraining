@@ -1,46 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-public class BossSpawnerState : IState
+public class BossSpawnerState : BossState
 {
-    BossSM bossSM;
-    float distance;
-    GameObject player;
-    GameObject boss;
-    float timeToSpawn = 0.5f;
+    float timeToSpawn = 2f;
     float curTime = 0;
-    public BossSpawnerState(BossSM _bossSM, GameObject player, GameObject boss, float distance)
+    public BossSpawnerState(BossSM _bossSM) : base(_bossSM)
     {
         bossSM = _bossSM;
-        this.player = player;
-        this.boss = boss;
-        this.distance = distance;
     }
 
-    public void Enter()
-    {
-    }
-
-    public void Exit()
-    {
-    }
-
-    public void FixedTick()
-    {
-        //
-    }
-
-    public void Tick()
+    public override void Tick()
     {
         if (curTime >= timeToSpawn)
         {
             bossSM.SpawnEnemy();
             curTime = 0;
         }else curTime += Time.deltaTime;
-        if (player != null)
+        if (bossSM.player != null)
         {
-            if (Vector2.Distance(boss.transform.position, player.transform.position) <= distance)
+            if (Vector2.Distance(bossSM.transform.position, bossSM.player.transform.position) <= bossSM.attackRange)
             {
                 bossSM.ChangeState(bossSM.attack2State);
             }

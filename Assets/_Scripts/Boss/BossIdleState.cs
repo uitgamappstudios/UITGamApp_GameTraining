@@ -1,41 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossIdleState : IState
+public class BossIdleState : BossState
 {
-    BossSM bossSM;
-    float distance;
-    GameObject player;
-    GameObject boss;
-    public BossIdleState(BossSM _bossSM, GameObject player, GameObject boss,  float distance)
-    {
-        bossSM = _bossSM;
-        this.player = player;
-        this.boss = boss;
-        this.distance = distance;
-    }
-
-    public void Enter()
-    {
-        Debug.Log("Idle");
-    }
-
-    public void Exit()
+    public BossIdleState(BossSM _bossSM) : base(_bossSM)
     {
         
     }
 
-    public void FixedTick()
-    {
-        //
-    }
-
-    public void Tick()
+    public override void Tick()
     { 
-        if (player != null)
+        if (bossSM.player != null)
         {
-            if (Vector2.Distance(boss.transform.position, player.transform.position) <= distance)
+            if (Vector2.Distance(bossSM.transform.position, bossSM.transform.position) <= bossSM.attackRange)
             {
                 if (bossSM.GetHealthPercentage() <= 0.5)
                 {

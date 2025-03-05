@@ -1,47 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttackState : IState
+public class BossAttackState : BossState
 {
-    BossSM bossSM;
-    float distance;
-    float timeToShoot = 0.5f;
-    GameObject player;
-    GameObject boss;
     float curTime = 0;
-    public BossAttackState(BossSM _bossSM, GameObject player, GameObject boss, float distance, float timeToShoot)
+    public BossAttackState(BossSM _bossSM) : base(_bossSM)
     {
         bossSM = _bossSM;
-        this.player = player;
-        this.boss = boss;
-        this.distance = distance;
-        this.timeToShoot = timeToShoot;
     }
-    public void Enter()
+    public override void Tick()
     {
-        Debug.Log("Attack");
-    }
-
-    public void Exit()
-    {
-    }
-
-    public void FixedTick()
-    {
-        //
-    }
-    public void Tick()
-    {
-        if (player != null)
+        if (bossSM.player != null)
         {
             bossSM.MoveToPlayer();
-            if (curTime >= timeToShoot)
+            if (curTime >= bossSM.timeToShoot)
             {
                 bossSM.ShootNormalBullet();
                 curTime = 0;
             }else curTime += Time.deltaTime;
-            if (Vector2.Distance(boss.transform.position, player.transform.position) > distance)
+            if (Vector2.Distance(bossSM.transform.position, bossSM.player.transform.position) > bossSM.attackRange)
             {
                 if (bossSM.GetHealthPercentage() <= 0.5)
                 {
