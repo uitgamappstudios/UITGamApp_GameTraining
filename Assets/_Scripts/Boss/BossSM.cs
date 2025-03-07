@@ -62,14 +62,14 @@ public class BossSM : BaseEnemyController
     public BossAttack2State attack2State;
     public BossDashState dashState;
     
-    [SerializeField] public GameObject spawnee;
-    [SerializeField] public GameObject player;
-    [SerializeField] public float timeToShoot = 1;
-    [SerializeField] public float attackRange = 10f;
-    [SerializeField] public int bulletCount = 5;
-    [SerializeField] public float dashSpeed = 25f;
-    [SerializeField] public float dashDuration = 0.2f;
-    [SerializeField] public float dashCooldown = 3f;
+    public GameObject spawnee;
+    public GameObject player;
+    public float timeToShoot = 1;
+    public float attackRange = 10f;
+    public int bulletCount = 5;
+    public float dashSpeed = 25f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 3f;
     
     public float lastDashTime {get; set;}
 
