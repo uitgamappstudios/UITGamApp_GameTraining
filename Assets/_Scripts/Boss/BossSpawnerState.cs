@@ -21,7 +21,14 @@ public class BossSpawnerState : BossState
         {
             if (Vector2.Distance(bossSM.transform.position, bossSM.player.transform.position) <= bossSM.attackRange)
             {
-                bossSM.ChangeState(bossSM.attack2State);
+                if (Time.time >= bossSM.lastDashTime + bossSM.dashCooldown)
+                {
+                    bossSM.ChangeState(bossSM.dashState);
+                }
+                else
+                {
+                    bossSM.ChangeState(bossSM.attack2State);
+                }
             }
         }
     }

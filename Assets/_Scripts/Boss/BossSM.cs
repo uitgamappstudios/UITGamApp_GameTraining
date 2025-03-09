@@ -60,12 +60,18 @@ public class BossSM : BaseEnemyController
     public BossAttackState attackState;
     public BossSpawnerState spawnerState;
     public BossAttack2State attack2State;
+    public BossDashState dashState;
     
-    [SerializeField] public GameObject spawnee;
-    [SerializeField] public GameObject player;
-    [SerializeField] public float timeToShoot = 1;
-    [SerializeField] public float attackRange = 10f;
-    [SerializeField] public int bulletCount = 5;
+    public GameObject spawnee;
+    public GameObject player;
+    public float timeToShoot = 1;
+    public float attackRange = 10f;
+    public int bulletCount = 5;
+    public float dashSpeed = 25f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 3f;
+    
+    public float lastDashTime {get; set;}
 
     public void Awake()
     {
@@ -73,6 +79,7 @@ public class BossSM : BaseEnemyController
         attackState = new BossAttackState(this);
         spawnerState = new BossSpawnerState(this);
         attack2State = new BossAttack2State(this);
+        dashState = new BossDashState(this);
     }
 
     public float GetHealthPercentage()
@@ -109,9 +116,7 @@ public class BossSM : BaseEnemyController
     {
         Instantiate(spawnee, gameObject.transform.position + new Vector3(Random.Range(0, 3f), Random.Range(0, 3f)), Quaternion.identity);
     }
-
-
-
+    
     protected override void Start()
     {
         base.Start();
