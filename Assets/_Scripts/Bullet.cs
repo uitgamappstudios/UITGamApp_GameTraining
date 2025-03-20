@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using UnityEditor.Tilemaps;
-using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     private Vector3 direction;
-    [SerializeField] private float speed;
+    public float speed;
 
+    //Thiet lap huong bay cua vien dan
     public void SetDirection(Vector3 direction)
     {
         this.direction = direction;

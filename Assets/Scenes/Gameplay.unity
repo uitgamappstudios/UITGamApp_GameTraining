@@ -223,8 +223,8 @@ MonoBehaviour:
   acceleration: 15
   friction: 15
   velocity: {x: 0, y: 0, z: 0}
+  enemies: []
   prefabBaseBullet: {fileID: 9175034089918255610, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
-  shootCooldown: 0.3
 --- !u!1001 &762945148
 PrefabInstance:
   m_ObjectHideFlags: 0

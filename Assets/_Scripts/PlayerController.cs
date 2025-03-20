@@ -1,19 +1,14 @@
-﻿using JetBrains.Annotations;
-using System.Collections.Generic;
-using UnityEditor.Tilemaps;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float maxSpeed = 10f;      // Tốc độ tối đa
-    [SerializeField] private float acceleration = 15f; // Độ lớn gia tốc khi nhấn phím
-    [SerializeField] private float friction = 15f;      // Lực ma sát khi không nhấn phím
-    [SerializeField] private Vector3 velocity = Vector3.zero; // Vận tốc hiện tại
+    public float maxSpeed = 10f;     // Tốc độ tối đa
+    public float acceleration = 15f; // Độ lớn gia tốc khi nhấn phím
+    public float friction = 15f;     // Lực ma sát khi không nhấn phím
+    public Vector3 velocity = Vector3.zero; // Vận tốc hiện tại
 
-    private GameObject[] enemies = null; //Tập hợp enemy 
-    [SerializeField] private GameObject prefabBaseBullet;
-    [SerializeField] private float shootCooldown = 0.3f; //Chu kì bắn đạn
-    private float timer = 0;
+    public GameObject[] enemies = null; // Tập hợp enemy 
+    public GameObject prefabBaseBullet;
 
     private float _cam_width;
     private float _cam_height;
@@ -25,20 +20,20 @@ public class PlayerController : MonoBehaviour
         _cam_width = _cam_height * Camera.main.aspect;
     }
 
-        void Update()
+    void Update()
     {
-        //Tìm các enemy trên scene 
+        // Tìm các enemy trên scene 
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        Move();
-        Shoot();
+        Move(); //Gọi hàm di chuyển biến đổi đều
+        Shoot(); //Gọi hàm bắn đạn
     }
 
-    //Hàm di chuyển
+    //Định nghĩa hàm di chuyển biến đổi đều
     public void Move()
     {
         // Hướng di chuyển
-        Vector3 inputDirection = new Vector3(0, 0, 0);
+        Vector3 inputDirection = Vector3.zero;
 
         // Kiểm tra các phím điều khiển
         if (Input.GetKey(KeyCode.W)) inputDirection.y += 1;
@@ -46,77 +41,56 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1;
 
-        // Tính độ lớn của inputDirection (magnitude)
-        float inputMagnitude = Mathf.Sqrt(inputDirection.x * inputDirection.x +
-                                          inputDirection.y * inputDirection.y +
-                                          inputDirection.z * inputDirection.z);
-
-        // Tính vector đơn vị (normalize) nếu inputMagnitude > 0
-        Vector3 inputNormalized = Vector3.zero;
-        if (inputMagnitude > 0)
-            inputNormalized = inputDirection / inputMagnitude;
+        // Tính vector đơn vị nếu có input
+        Vector3 inputNormalized = inputDirection.magnitude > 0 ? inputDirection.normalized : Vector3.zero;
 
         // Xử lý vận tốc
-        if (inputMagnitude > 0)
+        if (inputDirection.magnitude > 0)
         {
             // Tăng tốc dần khi nhấn phím
             velocity += inputNormalized * acceleration * Time.deltaTime;
 
-            // Tính độ lớn của vận tốc (magnitude)
-            float velocityMagnitude = Mathf.Sqrt(velocity.x * velocity.x +
-                                                 velocity.y * velocity.y +
-                                                 velocity.z * velocity.z);
-
             // Giới hạn tốc độ tối đa
-            if (velocityMagnitude > maxSpeed)
+            if (velocity.magnitude > maxSpeed)
             {
-                // Tính vector đơn vị của velocity
-                Vector3 velocityNormalized = new Vector3(0, 0, 0);
-                if (velocityMagnitude > 0)
-                    velocityNormalized = velocity / velocityMagnitude;
-
-                velocity = velocityNormalized * maxSpeed;
+                velocity = velocity.normalized * maxSpeed;
             }
         }
         else
         {
             // Giảm tốc dần khi không nhấn phím
-            float velocityMagnitude = Mathf.Sqrt(velocity.x * velocity.x +
-                                                 velocity.y * velocity.y +
-                                                 velocity.z * velocity.z);
-
-            float newSpeed = velocityMagnitude - (friction * Time.deltaTime);
-            if (newSpeed < 0)
-                newSpeed = 0;
-
-            // Tính vector đơn vị của velocity
-            Vector3 velocityNormalized = new Vector3(0, 0, 0);
-            if (velocityMagnitude > 0)
-                velocityNormalized = velocity / velocityMagnitude;
-
-            velocity = velocityNormalized * newSpeed;
+            float newSpeed = velocity.magnitude - (friction * Time.deltaTime);
+            velocity = velocity.magnitude > 0 ? velocity.normalized * Mathf.Max(newSpeed, 0) : Vector3.zero;
         }
 
         // Di chuyển nhân vật
         transform.position += velocity * Time.deltaTime - (0.5f * acceleration * inputNormalized * Time.deltaTime * Time.deltaTime);
 
-        //Giới hạn vị trí Player
-        Vector3 new_positon = transform.position;
+
+        // Tạo biến lưu giá trị vi tri mới
+        Vector3 new_position = transform.position;
+
         // Giới hạn trái phải
-        new_positon.x = Mathf.Min(Mathf.Max(-_cam_width / 2, new_positon.x + velocity.x * Time.deltaTime), _cam_width / 2);
+        if (new_position.x < -_cam_width / 2)
+            new_position.x = -_cam_width / 2;
+        else if (new_position.x > _cam_width / 2)
+            new_position.x = _cam_width / 2;
+
         // Giới hạn trên dưới
-        new_positon.y = Mathf.Min(Mathf.Max(-_cam_height / 2, new_positon.y + velocity.y * Time.deltaTime), _cam_height / 2);
-        transform.position = new_positon;
+        if (new_position.y < -_cam_height / 2)
+            new_position.y = -_cam_height / 2;
+        else if (new_position.y > _cam_height / 2)
+            new_position.y = _cam_height / 2;
+
+        // Cập nhật vị trí mới
+        transform.position = new_position;
     }
 
-
-
+    // Định nghĩa hàm bắn đạn
     public void Shoot()
     {
-        timer += Time.deltaTime;
-
-        // Chỉ bắn khi player đứng yên, có ít nhất 1 kẻ địch và đến chu kỳ bắn
-        if (velocity == Vector3.zero && enemies.Length != 0 && timer >= shootCooldown)
+        // Chỉ bắn khi vừa nhấn phím xuống 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             // Chọn ngẫu nhiên một kẻ địch trong danh sách
             GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
@@ -124,15 +98,7 @@ public class PlayerController : MonoBehaviour
             if (targetEnemy != null) // Đảm bảo kẻ địch vẫn còn tồn tại
             {
                 // Lấy hướng từ người chơi đến kẻ địch
-                Vector3 direction = targetEnemy.transform.position - transform.position;
-
-                // Tính độ lớn của direction (magnitude)
-                float magnitude = Mathf.Sqrt(direction.x * direction.x + direction.y * direction.y + direction.z * direction.z);
-
-                // Tính vector đơn vị (normalized) nếu magnitude > 0 
-                Vector3 directionNormalized = new Vector3(0, 0, 0);
-                if (magnitude > 0)
-                    directionNormalized = direction / magnitude;
+                Vector3 directionNormalized = (targetEnemy.transform.position - transform.position).normalized;
 
                 // Tạo viên đạn từ prefab
                 GameObject bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
@@ -140,10 +106,6 @@ public class PlayerController : MonoBehaviour
                 // Thiết lập hướng bay cho viên đạn
                 bullet.GetComponent<Bullet>().SetDirection(directionNormalized);
             }
-
-            timer = 0; // Đặt lại timer sau khi bắn
         }
     }
-
-
 }
