@@ -13,8 +13,11 @@ public class PlayerController : MonoBehaviour
     private float _cam_width;
     private float _cam_height;
 
+    public float maxHealth;
+    public float currHealth;
     void Start()
     {
+        currHealth = maxHealth;
         // Lấy dài rộng của camera
         _cam_height = Camera.main.orthographicSize * 2;
         _cam_width = _cam_height * Camera.main.aspect;
@@ -22,13 +25,28 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Tìm các enemy trên scene 
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+      
 
         Move(); //Gọi hàm di chuyển biến đổi đều
         Shoot(); //Gọi hàm bắn đạn
     }
-
+    public void ModifyHealth(float health)
+    {
+        currHealth += health;
+        if (currHealth > maxHealth)
+        {
+            currHealth = maxHealth;
+        }
+        if (currHealth <= 0)
+        {
+            Die();
+        }
+    }
+    public void Die()
+    {
+        Debug.Log("GameOver!");
+        Destroy(gameObject);
+    }
     //Định nghĩa hàm di chuyển biến đổi đều
     public void Move()
     {
@@ -92,19 +110,24 @@ public class PlayerController : MonoBehaviour
         // Chỉ bắn khi vừa nhấn phím xuống 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Chọn ngẫu nhiên một kẻ địch trong danh sách
-            GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
-
-            if (targetEnemy != null) // Đảm bảo kẻ địch vẫn còn tồn tại
+            // Tìm các enemy trên scene 
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length != 0)
             {
-                // Lấy hướng từ người chơi đến kẻ địch
-                Vector3 directionNormalized = (targetEnemy.transform.position - transform.position).normalized;
+                // Chọn ngẫu nhiên một kẻ địch trong danh sách
+                GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
 
-                // Tạo viên đạn từ prefab
-                GameObject bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
+                if (targetEnemy != null) // Đảm bảo kẻ địch vẫn còn tồn tại
+                {
+                    // Lấy hướng từ người chơi đến kẻ địch
+                    Vector3 directionNormalized = (targetEnemy.transform.position - transform.position).normalized;
 
-                // Thiết lập hướng bay cho viên đạn
-                bullet.GetComponent<Bullet>().SetDirection(directionNormalized);
+                    // Tạo viên đạn từ prefab
+                    GameObject bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
+
+                    // Thiết lập hướng bay cho viên đạn
+                    bullet.GetComponent<Bullet>().SetDirection(directionNormalized);
+                }
             }
         }
     }

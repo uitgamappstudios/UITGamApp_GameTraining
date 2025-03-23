@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     private Vector3 direction;
     public float speed;
@@ -19,18 +21,10 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player"))
         {
             // tru mau Enemy
-            EnemyController enemy1 =  collision.GetComponent<EnemyController>();
-            if (enemy1 != null)
-            {
-                enemy1.ModifyHealth(-damage);
-            }
-            else
-            {
-                collision.GetComponent<Enemy2Controller>().ModifyHealth(-damage);
-            }
+            collision.GetComponent<PlayerController>().ModifyHealth(-damage);
             Destroy(gameObject);
         }
 
