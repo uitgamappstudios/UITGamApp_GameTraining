@@ -29,7 +29,12 @@ public class Bullet : MonoBehaviour
             }
             else
             {
-                collision.GetComponent<Enemy2Controller>().ModifyHealth(-damage);
+                Enemy2Controller enemy2 = collision.GetComponent<Enemy2Controller>();
+                if (enemy2 != null)
+                {
+                    enemy2.ModifyHealth(-damage);
+                }
+                else collision.GetComponent<Enemy3Controller>().ModifyHealth(-damage);
             }
             Destroy(gameObject);
         }
