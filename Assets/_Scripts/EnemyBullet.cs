@@ -2,18 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class EnemyBullet : BaseBullet
 {
-    private Vector3 direction;
-    public float speed;
-
-    public float damage;
-    //Thiet lap huong bay cua vien dan
-    public void SetDirection(Vector3 direction)
-    {
-        this.direction = direction;
-    }
-
     void Update()
     {
         // Di chuyển viên đạn theo hướng đã được thiết lập

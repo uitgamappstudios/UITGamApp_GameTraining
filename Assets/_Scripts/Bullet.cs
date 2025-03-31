@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : BaseBullet
 {
-    private Vector3 direction;
-    public float speed;
-
-    public float damage;
-    //Thiet lap huong bay cua vien dan
-    public void SetDirection(Vector3 direction)
+    public override void SetDirection(Vector3 direction)
     {
         this.direction = direction;
     }
-
     void Update()
     {
         // Di chuyển viên đạn theo hướng đã được thiết lập
@@ -36,7 +30,8 @@ public class Bullet : MonoBehaviour
                 }
                 else collision.GetComponent<Enemy3Controller>().ModifyHealth(-damage);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            BulletPooling.Instance.ReturnBullet(this);
         }
 
     }

@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2Controller : MonoBehaviour
+public class Enemy2Controller : BaseEnemy
 {
-    public GameObject player;
-    public float speed;
-
-    public float maxHealth;
-    public float currentHealth;
 
     public float shootCoolDown;
     public float timer;
@@ -68,8 +63,5 @@ public class Enemy2Controller : MonoBehaviour
             Die();
         }
     }
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
+    
 }

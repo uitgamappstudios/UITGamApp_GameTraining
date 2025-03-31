@@ -2,13 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : BaseEnemy
 {
-    public GameObject player;
-    public float speed;
-
-    public float maxHealth;
-    public float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +41,5 @@ public class EnemyController : MonoBehaviour
             Die();
         }
     }
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
+    
 }

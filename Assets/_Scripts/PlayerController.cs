@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 velocity = Vector3.zero; // Vận tốc hiện tại
 
     public GameObject[] enemies = null; // Tập hợp enemy 
-    public GameObject prefabBaseBullet;
 
     private float _cam_width;
     private float _cam_height;
@@ -25,8 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-      
-
         Move(); //Gọi hàm di chuyển biến đổi đều
         Shoot(); //Gọi hàm bắn đạn
     }
@@ -123,10 +120,12 @@ public class PlayerController : MonoBehaviour
                     Vector3 directionNormalized = (targetEnemy.transform.position - transform.position).normalized;
 
                     // Tạo viên đạn từ prefab
-                    GameObject bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
+                    //var bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
+                    var bullet = BulletPooling.Instance.GetBullet();
+                    bullet.transform.position = transform.position;
 
                     // Thiết lập hướng bay cho viên đạn
-                    bullet.GetComponent<Bullet>().SetDirection(directionNormalized);
+                    bullet.SetDirection(directionNormalized);
                 }
             }
         }
