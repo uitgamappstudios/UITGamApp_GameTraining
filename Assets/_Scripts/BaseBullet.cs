@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,15 +13,11 @@ public class BaseBullet : MonoBehaviour
     {
         this.direction = direction;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Di chuyển viên đạn theo hướng đã được thiết lập
+        transform.position += direction * speed * Time.deltaTime;
     }
 }

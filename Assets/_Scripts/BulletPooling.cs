@@ -50,5 +50,8 @@ public class BulletPooling : MonoBehaviour
 
 public enum BulletType
 {
-    PlayerBullet, EnemyBullet
+    PlayerBullet,
+    EnemyBullet,
+    TracingBullet,
+    RotatingBullet
 }

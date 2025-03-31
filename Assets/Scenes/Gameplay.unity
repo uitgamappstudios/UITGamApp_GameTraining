@@ -210,6 +210,8 @@ MonoBehaviour:
   bulletPrefabs:
   - {fileID: 3013010749667919579, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
   - {fileID: 6581200168790857588, guid: 8628844b02c4ab2499a2b5c1d4689508, type: 3}
+  - {fileID: 3436304037115639185, guid: 1e0aa2c1e87215a4aac46af96d172deb, type: 3}
+  - {fileID: 2402698727827719558, guid: 302de92b519b5b048a6d9d91e8d6dddd, type: 3}
 --- !u!4 &738716196
 Transform:
   m_ObjectHideFlags: 0

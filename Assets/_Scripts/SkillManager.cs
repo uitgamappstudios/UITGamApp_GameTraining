@@ -23,6 +23,8 @@ public class SkillManager : MonoBehaviour
     private void Start()
     {
         AddSkill(new MultishotSkill());
+        AddSkill(new TracingBulletSkill());
+        AddSkill(new RotatingBulletSkill());
     }
 
     private void Update()
@@ -30,6 +32,16 @@ public class SkillManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ActivateSkill("Multishot");
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            ActivateSkill("TracingBullet");
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ActivateSkill("RotatingBullet");
         }
     }
 
