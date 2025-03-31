@@ -30,8 +30,7 @@ public class Bullet : BaseBullet
                 }
                 else collision.GetComponent<Enemy3Controller>().ModifyHealth(-damage);
             }
-            //Destroy(gameObject);
-            BulletPooling.Instance.ReturnBullet(this);
+            BulletPooling.Instance.ReturnBullet(this, BulletType.PlayerBullet);
         }
 
     }

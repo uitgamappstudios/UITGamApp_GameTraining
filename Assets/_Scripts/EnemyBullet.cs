@@ -15,7 +15,7 @@ public class EnemyBullet : BaseBullet
         {
             // tru mau Enemy
             collision.GetComponent<PlayerController>().ModifyHealth(-damage);
-            Destroy(gameObject);
+            BulletPooling.Instance.ReturnBullet(this, BulletType.EnemyBullet);
         }
 
     }

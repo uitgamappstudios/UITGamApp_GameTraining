@@ -2,7 +2,6 @@
 
 public class Enemy3Controller : BaseEnemy
 {
-    [SerializeField] private GameObject _prefabBaseBullet;
     [SerializeField] private float _shootCooldown = 0.3f;
     [SerializeField] private float _health;
     [SerializeField] private int _bulletCount = 6;
@@ -19,10 +18,10 @@ public class Enemy3Controller : BaseEnemy
     void Shoot(int bulletIndex)
     {
         float angle = 360 / _bulletCount;
-        GameObject bullet = Instantiate(_prefabBaseBullet, transform.position, Quaternion.identity);
-        bullet.GetComponent<EnemyBullet>().SetDirection(new Vector3(Mathf.Cos(((bulletIndex - 1) * angle) * Mathf.Deg2Rad),
+        var bullet = BulletPooling.Instance.GetBullet(BulletType.EnemyBullet);
+        bullet.transform.position = transform.position;
+        bullet.SetDirection(new Vector3(Mathf.Cos(((bulletIndex - 1) * angle) * Mathf.Deg2Rad),
             Mathf.Sin(((bulletIndex - 1) * angle) * Mathf.Deg2Rad), 0));
-        
     }
 
     public void Move()

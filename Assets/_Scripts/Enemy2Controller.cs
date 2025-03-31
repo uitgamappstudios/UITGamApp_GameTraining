@@ -8,7 +8,6 @@ public class Enemy2Controller : BaseEnemy
     public float shootCoolDown;
     public float timer;
 
-    public GameObject enemyBullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +45,11 @@ public class Enemy2Controller : BaseEnemy
         Vector3 directionNormalized = (player.transform.position - transform.position).normalized;
 
         // Tạo viên đạn từ prefab
-        GameObject bullet = Instantiate(enemyBullet, transform.position, Quaternion.identity);
+        var bullet = BulletPooling.Instance.GetBullet(BulletType.EnemyBullet);
+        bullet.transform.position = transform.position;
 
         // Thiết lập hướng bay cho viên đạn
-        bullet.GetComponent<EnemyBullet>().SetDirection(directionNormalized);
+        bullet.SetDirection(directionNormalized);
     }
     public void ModifyHealth(float health)
     {

@@ -19,28 +19,36 @@ public class BulletPooling : MonoBehaviour
     }
     #endregion
 
-    public BaseBullet bulletPrefab;
-    private Queue<BaseBullet> bulletPool = new Queue<BaseBullet>();
-    public BaseBullet GetBullet()
+    public List<BaseBullet> bulletPrefabs;
+    private Dictionary<BulletType, Queue<BaseBullet>> bulletPool = new Dictionary<BulletType, Queue<BaseBullet>>();
+    public BaseBullet GetBullet(BulletType bulletType)
     {
-        if (bulletPool.Count <= 0)
+        if (!bulletPool.ContainsKey(bulletType))
+            bulletPool.Add(bulletType, new Queue<BaseBullet>());
+
+        if (bulletPool[bulletType].Count <= 0)
         {
             int count = 10;
             for (int i = 0; i < count; i++)
             {
-                var b = Instantiate(bulletPrefab);
+                var b = Instantiate(bulletPrefabs[(int)bulletType]);
                 b.gameObject.SetActive(false);
-                bulletPool.Enqueue(b);
+                bulletPool[bulletType].Enqueue(b);
             }
         }
-        var bullet = bulletPool.Dequeue();
+        var bullet = bulletPool[bulletType].Dequeue();
         bullet.gameObject.SetActive(true);
         return bullet;
     }
 
-    public void ReturnBullet(Bullet bullet)
+    public void ReturnBullet(BaseBullet bullet, BulletType bulletType)
     {
         bullet.gameObject.SetActive(false);
-        bulletPool.Enqueue(bullet);
+        bulletPool[bulletType].Enqueue(bullet);
     }
+}
+
+public enum BulletType
+{
+    PlayerBullet, EnemyBullet
 }

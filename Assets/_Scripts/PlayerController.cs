@@ -120,8 +120,7 @@ public class PlayerController : MonoBehaviour
                     Vector3 directionNormalized = (targetEnemy.transform.position - transform.position).normalized;
 
                     // Tạo viên đạn từ prefab
-                    //var bullet = Instantiate(prefabBaseBullet, transform.position, Quaternion.identity);
-                    var bullet = BulletPooling.Instance.GetBullet();
+                    var bullet = BulletPooling.Instance.GetBullet(BulletType.PlayerBullet);
                     bullet.transform.position = transform.position;
 
                     // Thiết lập hướng bay cho viên đạn
