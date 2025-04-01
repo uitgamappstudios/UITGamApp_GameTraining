@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Runtime.Serialization;
+using UnityEngine;
+using static System.Net.WebRequestMethods;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     public float maxHealth;
     public float currHealth;
+
+    public bool isWin = false;
     void Start()
     {
         currHealth = maxHealth;
@@ -24,8 +28,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Tìm các enemy trên scene 
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //Kiem tra so luong enemy chien thang
+        if (isWin == false && enemies.Length == 0)
+        {
+            UIManager.instance.Win();
+            isWin = true;
+        }
+
         Move(); //Gọi hàm di chuyển biến đổi đều
-        Shoot(); //Gọi hàm bắn đạn
+        Shoot(); //Gọi hàm bắn đạn  
     }
     public void ModifyHealth(float health)
     {
@@ -43,6 +56,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("GameOver!");
         Destroy(gameObject);
+
+        //UI Gameover
+        UIManager.instance.Lose();
     }
     //Định nghĩa hàm di chuyển biến đổi đều
     public void Move()
@@ -107,8 +123,6 @@ public class PlayerController : MonoBehaviour
         // Chỉ bắn khi vừa nhấn phím xuống 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // Tìm các enemy trên scene 
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
             if (enemies.Length != 0)
             {
                 // Chọn ngẫu nhiên một kẻ địch trong danh sách

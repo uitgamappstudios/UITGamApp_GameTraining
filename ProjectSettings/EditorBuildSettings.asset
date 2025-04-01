@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameTraining/Week3/Week3.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Gameplay.unity
+    guid: 63a5fe07879bfcb4193335185500bdfd
+  - enabled: 1
+    path: Assets/Scenes/Room1.unity
+    guid: 5b5464c1dd9b9654eb70ccbe1cdf8738
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+    guid: 9d730d7843ba8b0459783ef06387d416
+  - enabled: 1
+    path: Assets/Scenes/Room3.unity
+    guid: 7b96b4272fe2e8c42bf3d313b58e1789
   m_configObjects: {}
