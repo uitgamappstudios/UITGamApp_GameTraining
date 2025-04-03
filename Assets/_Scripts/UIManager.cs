@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI skill2Text;
     public TextMeshProUGUI skill3Text;
 
+    public GameObject pausePanel;
+
     public void Start()
     {
         healthbar.maxValue = SkillManager.instance.maxHealth;
@@ -82,5 +84,28 @@ public class UIManager : MonoBehaviour
         SkillManager.instance.ChooseSkill(i);
         panelSkill.SetActive(false);
         nextLevelButton.SetActive(true);
+    }
+
+    public void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+        
+    }
+    public void ClosePausePanel()
+    {
+        Time.timeScale = 1f;
+        pausePanel.SetActive(false);
+
+    }
+    public void ExitGame()
+    {
+        Time.timeScale = 1f;
+        Application.Quit();
+    }
+    public void RestartGame()
+    {
+        PlayAgain();
+        ClosePausePanel();
     }
 }
