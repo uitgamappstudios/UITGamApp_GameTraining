@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float currHealth;
 
     public bool isWin = false;
+
+    public Joystick joystick;
     void Start()
     {
         currHealth = maxHealth;
@@ -71,6 +73,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) inputDirection.y -= 1;
         if (Input.GetKey(KeyCode.A)) inputDirection.x -= 1;
         if (Input.GetKey(KeyCode.D)) inputDirection.x += 1;
+
+        // Get direction from joystick 
+        inputDirection.x = joystick.Horizontal;
+        inputDirection.y = joystick.Vertical;
 
         // Tính vector đơn vị nếu có input
         Vector3 inputNormalized = inputDirection.magnitude > 0 ? inputDirection.normalized : Vector3.zero;
