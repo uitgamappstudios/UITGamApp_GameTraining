@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public float maxHealth;
     public float currHealth;
+
+    public bool isWin = false;
     void Start()
     {
         currHealth = maxHealth;
@@ -24,6 +27,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Tìm các enemy trên scene 
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (isWin == false && enemies.Length == 0)
+        {
+            UIManager.instance.Win();
+            isWin = true;
+        }
         Move(); //Gọi hàm di chuyển biến đổi đều
         Shoot(); //Gọi hàm bắn đạn
     }
