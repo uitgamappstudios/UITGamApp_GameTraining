@@ -18,7 +18,6 @@ public class RotatingBulletSkill : BaseSkill
                 _bullet = (RotatingBullet)BulletPooling.Instance.GetBullet(BulletType.RotatingBullet);
                 _bullet.transform.parent = player.transform;
                 _bullet.transform.position = Vector3.zero;
-                _bullet.SetPlayer(player);
             }
         }
     }

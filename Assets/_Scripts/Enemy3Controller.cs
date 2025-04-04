@@ -5,15 +5,13 @@ public class Enemy3Controller : BaseEnemy
     [SerializeField] private float _shootCooldown = 0.3f;
     [SerializeField] private float _health;
     [SerializeField] private int _bulletCount = 6;
-    private float _currentHealth;
     private float _timer = 0;
     private float _shootDelay = 0.2f;
     private int _bulletIndex = 0;
 
-    void Start()
+    protected override void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        _currentHealth = _health;
+        base.Start();
     }
     void Shoot(int bulletIndex)
     {
@@ -22,16 +20,6 @@ public class Enemy3Controller : BaseEnemy
         bullet.transform.position = transform.position;
         bullet.SetDirection(new Vector3(Mathf.Cos(((bulletIndex - 1) * angle) * Mathf.Deg2Rad),
             Mathf.Sin(((bulletIndex - 1) * angle) * Mathf.Deg2Rad), 0));
-    }
-
-    public void Move()
-    {
-        Vector3 direction = player.transform.position - this.transform.position;
-        Vector3 velocity = direction.normalized * speed;
-        this.transform.position += velocity * Time.deltaTime;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        this.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
     }
 
     void Update()
@@ -45,10 +33,4 @@ public class Enemy3Controller : BaseEnemy
         }
         else _timer += Time.deltaTime;
     }
-    public void ModifyHealth(float delta)
-    {
-        _currentHealth += delta;
-        if (_currentHealth < 0) Die();
-    }
-    
 }

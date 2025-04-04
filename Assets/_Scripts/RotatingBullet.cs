@@ -7,22 +7,16 @@ public class RotatingBullet : BaseBullet
     [SerializeField] private float radius; // Bán kính di chuyển của đạn
 
     private float currentAngle;
-    private PlayerController player;
-
-    public void SetPlayer(PlayerController player)
-    {
-        this.player = player;
-    }
 
     private void Update()
     {
         // Di chuyển viên đạn theo vòng tròn xung quanh player
-        if (player == null)
+        if (GameManager.instance.player == null)
             return;
 
         currentAngle += speed * Time.deltaTime;
         Vector3 offset = new Vector3(Mathf.Sin(currentAngle), Mathf.Cos(currentAngle), 0) * radius;
-        transform.position = player.transform.position + offset;
+        transform.position = GameManager.instance.player.transform.position + offset;
     }
 
     protected void Destroy() { }
