@@ -202,13 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986d721007b17e04ea9ca74661bf3511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  acceleration: 15
-  friction: 15
   velocity: {x: 0, y: 0, z: 0}
   enemies: []
-  maxHealth: 10
   currHealth: 0
+  playerConfig: {fileID: 11400000, guid: 9e021e1b44e9ac7418175b001f7fbedc, type: 2}
+  isWin: 0
+  joystick: {fileID: 0}
 --- !u!50 &169266722296996086
 Rigidbody2D:
   serializedVersion: 4

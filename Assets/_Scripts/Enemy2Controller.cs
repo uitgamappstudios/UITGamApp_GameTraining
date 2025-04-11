@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy2Controller : BaseEnemy
 {
 
-    public float shootCoolDown;
     public float timer;
 
     // Start is called before the first frame update

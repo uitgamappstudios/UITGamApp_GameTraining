@@ -34,7 +34,7 @@ public class SkillManager : MonoBehaviour
         AddSkill(new RotatingBulletSkill());*/
 
         //Thiet lap mau toi da cua player khi vua bat dau game
-        maxHealth = player.maxHealth;
+        maxHealth = player.playerConfig.maxHealth;
 
         //Them toan bo skill vao danh sach
         allSkills.Add(new MultishotSkill());

@@ -98,12 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb07181d34f4df545a8094f8eed3cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabBaseBullet: {fileID: 3192071238465876049, guid: 8628844b02c4ab2499a2b5c1d4689508, type: 3}
-  _shootCooldown: 4
-  _health: 15
-  _bulletCount: 6
+  id: 3
   player: {fileID: 0}
-  speed: 1
+  enemyConfigs: {fileID: 11400000, guid: 9e287284e250bc244a11a2cbdc3769cb, type: 2}
+  currentHealth: 0
+  _bulletCount: 6
 --- !u!58 &6110067825558459663
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd256b80a79c5f4b8548ffffdef470c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 1
+  bulletType: 2
+  configs: {fileID: 11400000, guid: 693d9d76a84b129469a6ca8fab5316be, type: 2}

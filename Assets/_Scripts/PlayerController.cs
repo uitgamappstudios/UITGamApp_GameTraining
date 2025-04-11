@@ -4,9 +4,6 @@ using static System.Net.WebRequestMethods;
 
 public class PlayerController : MonoBehaviour
 {
-    public float maxSpeed = 10f;     // Tốc độ tối đa
-    public float acceleration = 15f; // Độ lớn gia tốc khi nhấn phím
-    public float friction = 15f;     // Lực ma sát khi không nhấn phím
     public Vector3 velocity = Vector3.zero; // Vận tốc hiện tại
 
     public GameObject[] enemies = null; // Tập hợp enemy 
@@ -14,15 +11,16 @@ public class PlayerController : MonoBehaviour
     private float _cam_width;
     private float _cam_height;
 
-    public float maxHealth;
     public float currHealth;
+
+    public PlayerConfig playerConfig;
 
     public bool isWin = false;
 
     public Joystick joystick;
     void Start()
     {
-        currHealth = maxHealth;
+        currHealth = playerConfig.maxHealth;
         // Lấy dài rộng của camera
         _cam_height = Camera.main.orthographicSize * 2;
         _cam_width = _cam_height * Camera.main.aspect;
@@ -45,9 +43,9 @@ public class PlayerController : MonoBehaviour
     public void ModifyHealth(float health)
     {
         currHealth += health;
-        if (currHealth > maxHealth)
+        if (currHealth > playerConfig.maxHealth)
         {
-            currHealth = maxHealth;
+            currHealth = playerConfig.maxHealth;
         }
         if (currHealth <= 0)
         {
@@ -85,23 +83,23 @@ public class PlayerController : MonoBehaviour
         if (inputDirection.magnitude > 0)
         {
             // Tăng tốc dần khi nhấn phím
-            velocity += inputNormalized * acceleration * Time.deltaTime;
+            velocity += inputNormalized * playerConfig.acceleration * Time.deltaTime;
 
             // Giới hạn tốc độ tối đa
-            if (velocity.magnitude > maxSpeed)
+            if (velocity.magnitude > playerConfig.maxSpeed)
             {
-                velocity = velocity.normalized * maxSpeed;
+                velocity = velocity.normalized * playerConfig.maxSpeed;
             }
         }
         else
         {
             // Giảm tốc dần khi không nhấn phím
-            float newSpeed = velocity.magnitude - (friction * Time.deltaTime);
+            float newSpeed = velocity.magnitude - (playerConfig.friction * Time.deltaTime);
             velocity = velocity.magnitude > 0 ? velocity.normalized * Mathf.Max(newSpeed, 0) : Vector3.zero;
         }
 
         // Di chuyển nhân vật
-        transform.position += velocity * Time.deltaTime - (0.5f * acceleration * inputNormalized * Time.deltaTime * Time.deltaTime);
+        transform.position += velocity * Time.deltaTime - (0.5f * playerConfig.acceleration * inputNormalized * Time.deltaTime * Time.deltaTime);
 
 
         // Tạo biến lưu giá trị vi tri mới

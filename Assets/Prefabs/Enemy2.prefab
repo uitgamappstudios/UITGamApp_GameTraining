@@ -171,10 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 328feab84ba5c6c48b683f926d7a6059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
   player: {fileID: 0}
-  speed: 3
-  maxHealth: 5
+  enemyConfigs: {fileID: 11400000, guid: 9e287284e250bc244a11a2cbdc3769cb, type: 2}
   currentHealth: 0
-  shootCoolDown: 2
   timer: 0
-  enemyBullet: {fileID: 3192071238465876049, guid: 8628844b02c4ab2499a2b5c1d4689508, type: 3}

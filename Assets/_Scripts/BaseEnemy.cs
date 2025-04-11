@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour
 {
+    public int id;
     public GameObject player;
-    public float speed;
+    public EnemyConfigs enemyConfigs;
+    private EnemyConfig config;
 
-    protected float maxHealth;
+    public float speed => config.speed;
+    public float maxHealth => config.maxHealth;
     public float currentHealth;
+    public float shootCoolDown => config.shootCoolDown;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        config = enemyConfigs.GetEnemyConfig(id);
     }
 
     // Update is called once per frame

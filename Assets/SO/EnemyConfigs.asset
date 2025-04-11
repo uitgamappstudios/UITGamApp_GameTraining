@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943595f5bf0f9cf46b82ce6201b02a9d, type: 3}
+  m_Name: EnemyConfigs
+  m_EditorClassIdentifier: 
+  configs:
+  - id: 1
+    maxHealth: 5
+    speed: 5
+    shootCoolDown: 0
+  - id: 2
+    maxHealth: 1
+    speed: 3
+    shootCoolDown: 2
+  - id: 3
+    maxHealth: 15
+    speed: 3
+    shootCoolDown: 4

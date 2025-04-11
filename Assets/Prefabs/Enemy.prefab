@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc15f07b72911446900a22d2c8d7e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 1
   player: {fileID: 0}
-  speed: 5
-  maxHealth: 3
+  enemyConfigs: {fileID: 11400000, guid: 9e287284e250bc244a11a2cbdc3769cb, type: 2}
   currentHealth: 0
 --- !u!60 &-7827469145991409252
 PolygonCollider2D:

@@ -2,8 +2,6 @@
 
 public class Enemy3Controller : BaseEnemy
 {
-    [SerializeField] private float _shootCooldown = 0.3f;
-    [SerializeField] private float _health;
     [SerializeField] private int _bulletCount = 6;
     private float _currentHealth;
     private float _timer = 0;
@@ -13,7 +11,7 @@ public class Enemy3Controller : BaseEnemy
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        _currentHealth = _health;
+        _currentHealth = maxHealth;
     }
     void Shoot(int bulletIndex)
     {
@@ -37,7 +35,7 @@ public class Enemy3Controller : BaseEnemy
     void Update()
     {
         Move();
-        if ((_bulletIndex > 0 && _timer > _shootDelay) || _timer >= _shootCooldown)
+        if ((_bulletIndex > 0 && _timer > _shootDelay) || _timer >= shootCoolDown)
         {
             Shoot(++_bulletIndex);
             _timer = 0;
