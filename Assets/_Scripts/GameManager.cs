@@ -17,5 +17,31 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public int score;
+    private void Start()
+    {
+        LoadData();
+    }
+
+    private int score;
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        SaveData();
+    }
+
+    public void SaveData()
+    {
+        PlayerPrefs.SetInt("Score", score);
+    }
+
+    public void LoadData()
+    {
+        score = PlayerPrefs.GetInt("Score", 0);
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }

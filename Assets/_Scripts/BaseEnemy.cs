@@ -28,7 +28,7 @@ public class BaseEnemy : MonoBehaviour
 
     protected void Die()
     {
-        GameManager.instance.score += 10;
+        GameManager.instance.AddScore(10);
         Destroy(gameObject);
     }
 }

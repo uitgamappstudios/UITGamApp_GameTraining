@@ -5,11 +5,11 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public PlayerController player;
-    private Dictionary<string, BaseSkill> skills = new Dictionary<string, BaseSkill>();
+    private Dictionary<string, SkillSO> skills = new Dictionary<string, SkillSO>();
     
-    public List<BaseSkill> allSkills = new List<BaseSkill>(); //Danh sach tat ca skill
+    public List<SkillSO> allSkills = new List<SkillSO>(); //Danh sach tat ca skill
      
-    public BaseSkill[] randomSkills = new BaseSkill[3]; //Danh sach 3 skill chon ra
+    public SkillSO[] randomSkills = new SkillSO[3]; //Danh sach 3 skill chon ra
 
     public float maxHealth; //Tao bien luu maxhealth hay vi lay tu player do luc chuyen scene player co the null
 
@@ -35,11 +35,6 @@ public class SkillManager : MonoBehaviour
 
         //Thiet lap mau toi da cua player khi vua bat dau game
         maxHealth = player.playerConfig.maxHealth;
-
-        //Them toan bo skill vao danh sach
-        allSkills.Add(new MultishotSkill());
-        allSkills.Add(new TracingBulletSkill());
-        allSkills.Add(new RotatingBulletSkill());
     }
 
     private void Update()
@@ -48,23 +43,24 @@ public class SkillManager : MonoBehaviour
         {
             player = FindObjectOfType<PlayerController>();
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ActivateSkill("Multishot");
+            ActivateSkill("MultishotSkill");
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            ActivateSkill("TracingBullet");
+            ActivateSkill("TracingBulletSkill");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            ActivateSkill("RotatingBullet");
+            ActivateSkill("RotatingBulletSkill");
         }
     }
 
-    public void AddSkill(BaseSkill skill)
+    public void AddSkill(SkillSO skill)
     {
         if (!skills.ContainsKey(skill.skillName))
         {
@@ -83,9 +79,9 @@ public class SkillManager : MonoBehaviour
     //Lay ra 3 skill ngau nhien trong kho skill
     public void TakeRandomSkill()
     {
-        randomSkills[0] = allSkills[Random.Range(0, 3)];
-        randomSkills[1] = allSkills[Random.Range(0, 3)];
-        randomSkills[2] = allSkills[Random.Range(0, 3)];
+        randomSkills[0] = allSkills[Random.Range(0, allSkills.Count)];
+        randomSkills[1] = allSkills[Random.Range(0, allSkills.Count)];
+        randomSkills[2] = allSkills[Random.Range(0, allSkills.Count)];
     }
 
     //Them skill duoc chon vao dictionary

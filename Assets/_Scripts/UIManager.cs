@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        scoreText.SetText("Score: "+ GameManager.instance.score.ToString());
+        scoreText.SetText("Score: "+ GameManager.instance.GetScore().ToString());
         if(SkillManager.instance.player != null ) 
             healthbar.value = SkillManager.instance.player.currHealth;
     }

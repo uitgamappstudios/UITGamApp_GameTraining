@@ -697,6 +697,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 175244796}
+  allSkills:
+  - {fileID: 11400000, guid: c65bda402923ec44393cafb722ec4dc4, type: 2}
+  - {fileID: 11400000, guid: 912ea2611e6c49f4da45d831235505c4, type: 2}
+  - {fileID: 11400000, guid: 03c307f0d2be59647b598a7b5b295d4c, type: 2}
+  randomSkills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxHealth: 0
 --- !u!4 &577709033
 Transform:
