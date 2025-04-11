@@ -208,6 +208,7 @@ MonoBehaviour:
   playerConfig: {fileID: 11400000, guid: 9e021e1b44e9ac7418175b001f7fbedc, type: 2}
   isWin: 0
   joystick: {fileID: 0}
+  winPublisher: {fileID: 11400000, guid: 10309c7c987f4aa4dab7e82b441dfd67, type: 2}
 --- !u!50 &169266722296996086
 Rigidbody2D:
   serializedVersion: 4

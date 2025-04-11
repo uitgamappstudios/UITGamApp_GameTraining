@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool isWin = false;
 
     public Joystick joystick;
+
+    public VoidPublisherSO winPublisher;
     void Start()
     {
         currHealth = playerConfig.maxHealth;
@@ -33,7 +35,8 @@ public class PlayerController : MonoBehaviour
         //Kiem tra so luong enemy chien thang
         if (isWin == false && enemies.Length == 0)
         {
-            UIManager.instance.Win();
+            //UIManager.instance.Win();
+            winPublisher.RaiseEvent();
             isWin = true;
         }
 

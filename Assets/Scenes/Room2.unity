@@ -1144,6 +1144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 175244796}
+  allSkills: []
+  randomSkills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   maxHealth: 0
 --- !u!4 &577709033
 Transform:
@@ -2085,7 +2090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215644afe9389574795c710243ce73c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
 --- !u!4 &1111955436
 Transform:
   m_ObjectHideFlags: 0
@@ -3272,6 +3276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1918914079}
   - component: {fileID: 1918914078}
+  - component: {fileID: 1918914080}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -3315,6 +3320,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1918914080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918914077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac6c6bac0b9d3429185a86c0101bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publisher: {fileID: 11400000, guid: 10309c7c987f4aa4dab7e82b441dfd67, type: 2}
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1918914078}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Win
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &2003402601
 PrefabInstance:
   m_ObjectHideFlags: 0
