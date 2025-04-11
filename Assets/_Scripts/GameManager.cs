@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadData();
+        score = GameDataManager.Instance.GameData.score;
     }
 
     private int score;
@@ -27,17 +27,9 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
-        SaveData();
-    }
-
-    public void SaveData()
-    {
-        PlayerPrefs.SetInt("Score", score);
-    }
-
-    public void LoadData()
-    {
-        score = PlayerPrefs.GetInt("Score", 0);
+        GameData gameData = GameDataManager.Instance.GameData;
+        gameData.score = score;
+        GameDataManager.Instance.GameData = gameData;
     }
 
     public int GetScore()

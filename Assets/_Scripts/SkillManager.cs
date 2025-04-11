@@ -35,6 +35,18 @@ public class SkillManager : MonoBehaviour
 
         //Thiet lap mau toi da cua player khi vua bat dau game
         maxHealth = player.playerConfig.maxHealth;
+
+        //Load skill data from GameData
+        GameData gameData = GameDataManager.Instance.GameData;
+
+        foreach (string skillName in gameData.playerSkills)
+        {
+            SkillSO skill = allSkills.Find(s => s.skillName == skillName);
+            if (skill != null)
+            {
+                skills.Add(skillName, skill);
+            }
+        }
     }
 
     private void Update()
@@ -65,6 +77,10 @@ public class SkillManager : MonoBehaviour
         if (!skills.ContainsKey(skill.skillName))
         {
             skills.Add(skill.skillName, skill);
+
+            GameData gameData = GameDataManager.Instance.GameData;
+            gameData.playerSkills.Add(skill.skillName);
+            GameDataManager.Instance.GameData = gameData;
         }
     }
 
