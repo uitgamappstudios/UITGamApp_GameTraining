@@ -3995,6 +3995,7 @@ GameObject:
   - component: {fileID: 1918914079}
   - component: {fileID: 1918914078}
   - component: {fileID: 1918914080}
+  - component: {fileID: 1918914081}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -4057,6 +4058,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1918914078}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Win
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1918914081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918914077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac6c6bac0b9d3429185a86c0101bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publisher: {fileID: 11400000, guid: e93b71159809db04bbd165de23cb34ce, type: 2}
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1918914078}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Lose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

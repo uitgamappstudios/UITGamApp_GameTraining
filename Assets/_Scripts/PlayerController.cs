@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Joystick joystick;
 
     public VoidPublisherSO winPublisher;
+    public VoidPublisherSO losePublisher;
     void Start()
     {
         currHealth = playerConfig.maxHealth;
@@ -61,7 +62,8 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
 
         //UI Gameover
-        UIManager.instance.Lose();
+        //UIManager.instance.Lose();
+        losePublisher.RaiseEvent();
     }
     //Định nghĩa hàm di chuyển biến đổi đều
     public void Move()

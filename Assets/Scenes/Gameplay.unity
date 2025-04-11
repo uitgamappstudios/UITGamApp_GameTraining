@@ -2548,6 +2548,8 @@ GameObject:
   - component: {fileID: 1918914078}
   - component: {fileID: 1918914081}
   - component: {fileID: 1918914080}
+  - component: {fileID: 1918914082}
+  - component: {fileID: 1918914083}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -2645,6 +2647,62 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Room1
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1918914082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918914077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac6c6bac0b9d3429185a86c0101bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publisher: {fileID: 11400000, guid: e93b71159809db04bbd165de23cb34ce, type: 2}
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1918914078}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Lose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1918914083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918914077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feac6c6bac0b9d3429185a86c0101bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  publisher: {fileID: 11400000, guid: b6c4d686e13e0af4a9e1a42181ce9f58, type: 2}
+  EventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1918914078}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2118999738
@@ -2767,17 +2825,9 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1024906346}
-    - target: {fileID: 562948219601218224, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
-      propertyPath: prefabBaseBullet
-      value: 
-      objectReference: {fileID: 3013010749667919579, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
     - target: {fileID: 2794402068606072378, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6808962650312501945, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6827716779865514221, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2931,11 +2981,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2329057610031305305, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 458
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 2329057610031305305, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -207.5
+      value: -438.50275
       objectReference: {fileID: 0}
     - target: {fileID: 2667360470367710761, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2955,11 +3005,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2667360470367710761, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 458
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 2667360470367710761, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -362.5
+      value: -593.50275
       objectReference: {fileID: 0}
     - target: {fileID: 2693544117788900597, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2979,11 +3029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693544117788900597, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 458
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 2693544117788900597, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -672.5
+      value: -903.50275
       objectReference: {fileID: 0}
     - target: {fileID: 2995303437123374875, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3007,11 +3057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3484476964296090024, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 458
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3484476964296090024, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -517.5
+      value: -748.50275
       objectReference: {fileID: 0}
     - target: {fileID: 6489590325644737077, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_Name
@@ -3101,10 +3151,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6647012635375785937, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1918914078}
     - target: {fileID: 7520941577301517811, guid: 43ad92caf8019c64188138fe513e4578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
