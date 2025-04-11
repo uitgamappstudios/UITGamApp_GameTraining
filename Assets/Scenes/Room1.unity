@@ -3276,21 +3276,9 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 60572661}
-    - target: {fileID: 562948219601218224, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
-      propertyPath: playerConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: 9e021e1b44e9ac7418175b001f7fbedc, type: 2}
-    - target: {fileID: 562948219601218224, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
-      propertyPath: prefabBaseBullet
-      value: 
-      objectReference: {fileID: 3013010749667919579, guid: 23875b7ba10d1bf429959d996bd80800, type: 3}
     - target: {fileID: 2794402068606072378, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6808962650312501945, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6827716779865514221, guid: 474b0d7af0fc2474382c6de011cc05a3, type: 3}
       propertyPath: m_LocalPosition.x
