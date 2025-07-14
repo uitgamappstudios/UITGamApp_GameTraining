@@ -7,7 +7,7 @@ public class BaseEnemy : MonoBehaviour
     public int id;
     public GameObject player;
     public EnemyConfigs enemyConfigs;
-    private EnemyConfig config;
+    protected EnemyConfig config;
 
     public float speed => config.speed;
     public float maxHealth => config.maxHealth;

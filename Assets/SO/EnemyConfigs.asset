@@ -17,11 +17,14 @@ MonoBehaviour:
     maxHealth: 5
     speed: 5
     shootCoolDown: 0
+    shootSound: {fileID: 8300000, guid: 4e453f396ef51644caf3f48c169252a6, type: 3}
   - id: 2
     maxHealth: 1
     speed: 3
     shootCoolDown: 2
+    shootSound: {fileID: 8300000, guid: 7bfef2403738c1c4f9e8a3c8aa610df8, type: 3}
   - id: 3
     maxHealth: 15
     speed: 3
     shootCoolDown: 4
+    shootSound: {fileID: 8300000, guid: 0e0b0c78578670b46bddbe91907ff0da, type: 3}

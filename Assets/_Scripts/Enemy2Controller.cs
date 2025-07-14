@@ -41,6 +41,7 @@ public class Enemy2Controller : BaseEnemy
     }
     public void Shoot()
     {
+        AudioManager.Instance.PlaySoundFXClipWithID("enemy_shoot", transform, 1f);
         Vector3 directionNormalized = (player.transform.position - transform.position).normalized;
 
         // Tạo viên đạn từ prefab
@@ -52,6 +53,7 @@ public class Enemy2Controller : BaseEnemy
     }
     public void ModifyHealth(float health)
     {
+        if (health < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
         currentHealth += health;
         if (currentHealth > maxHealth)
         {

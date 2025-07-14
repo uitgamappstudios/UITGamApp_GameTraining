@@ -15,6 +15,7 @@ public class Enemy3Controller : BaseEnemy
     }
     void Shoot(int bulletIndex)
     {
+        AudioManager.Instance.PlaySoundFXClipWithID("enemy_shoot", transform, 1f);
         float angle = 360 / _bulletCount;
         var bullet = BulletPooling.Instance.GetBullet(BulletType.EnemyBullet);
         bullet.transform.position = transform.position;
@@ -45,6 +46,7 @@ public class Enemy3Controller : BaseEnemy
     }
     public void ModifyHealth(float delta)
     {
+        if (delta < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
         _currentHealth += delta;
         if (_currentHealth < 0) Die();
     }

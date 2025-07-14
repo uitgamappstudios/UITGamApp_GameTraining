@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private float _cam_width;
     private float _cam_height;
 
+    public AudioClip shootingAudioClip;
+
     public float currHealth;
 
     public PlayerConfig playerConfig;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ModifyHealth(float health)
     {
+        if(health < 0) AudioManager.Instance.PlaySoundFXClipWithID("player_hurt", transform, 1f);
         currHealth += health;
         if (currHealth > playerConfig.maxHealth)
         {
@@ -134,6 +137,8 @@ public class PlayerController : MonoBehaviour
         {
             if (enemies.Length != 0)
             {
+                // Phát âm thanh bắn
+                AudioManager.Instance.PlaySoundFXClipWithID("player_shoot", transform, 1f);
                 // Chọn ngẫu nhiên một kẻ địch trong danh sách
                 GameObject targetEnemy = enemies[Random.Range(0, enemies.Length)];
 
