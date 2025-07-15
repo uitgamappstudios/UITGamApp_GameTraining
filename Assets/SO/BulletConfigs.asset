@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletConfigs:
   - bulletType: 0
-    damage: 15
+    damage: 7
     speed: 5
   - bulletType: 2
-    damage: 15
+    damage: 7
     speed: 5
   - bulletType: 3
-    damage: 10
+    damage: 5
     speed: 10
   - bulletType: 1
-    damage: 5
+    damage: 3
     speed: 10

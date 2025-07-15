@@ -8,6 +8,7 @@ public class BaseEnemy : MonoBehaviour
     public GameObject player;
     public EnemyConfigs enemyConfigs;
     protected EnemyConfig config;
+    [SerializeField] protected Animator enemyAnimator;
 
     public float speed => config.speed;
     public float maxHealth => config.maxHealth;

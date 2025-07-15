@@ -31,6 +31,7 @@ public class EnemyController : BaseEnemy
     }
     public void ModifyHealth(float health)
     {
+        if (health < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
         currentHealth += health;
         if (currentHealth > maxHealth)
         {
