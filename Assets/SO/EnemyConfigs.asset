@@ -25,3 +25,7 @@ MonoBehaviour:
     maxHealth: 15
     speed: 3
     shootCoolDown: 4
+  - id: 0
+    maxHealth: 100
+    speed: 4
+    shootCoolDown: 4

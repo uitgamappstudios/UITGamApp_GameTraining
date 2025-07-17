@@ -16,19 +16,10 @@ public class Bullet : BaseBullet
         if(collision.CompareTag("Enemy"))
         {
             // tru mau Enemy
-            EnemyController enemy1 =  collision.GetComponent<EnemyController>();
-            if (enemy1 != null)
+            BaseEnemy enemy =  collision.GetComponent<BaseEnemy>();
+            if (enemy != null)
             {
-                enemy1.ModifyHealth(-damage);
-            }
-            else
-            {
-                Enemy2Controller enemy2 = collision.GetComponent<Enemy2Controller>();
-                if (enemy2 != null)
-                {
-                    enemy2.ModifyHealth(-damage);
-                }
-                else collision.GetComponent<Enemy3Controller>().ModifyHealth(-damage);
+                enemy.ModifyHealth(-damage);
             }
             BulletPooling.Instance.ReturnBullet(this, BulletType.PlayerBullet);
         }

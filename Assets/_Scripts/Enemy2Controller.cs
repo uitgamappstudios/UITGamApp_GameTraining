@@ -51,19 +51,5 @@ public class Enemy2Controller : BaseEnemy
         // Thiết lập hướng bay cho viên đạn
         bullet.SetDirection(directionNormalized);
     }
-    public void ModifyHealth(float health)
-    {
-        if (health < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
-        enemyAnimator.SetTrigger("Hurt");
-        currentHealth += health;
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
     
 }

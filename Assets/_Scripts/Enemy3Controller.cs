@@ -44,11 +44,4 @@ public class Enemy3Controller : BaseEnemy
         }
         else _timer += Time.deltaTime;
     }
-    public void ModifyHealth(float delta)
-    {
-        if (delta < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
-        _currentHealth += delta;
-        if (_currentHealth < 0) Die();
-    }
-    
 }

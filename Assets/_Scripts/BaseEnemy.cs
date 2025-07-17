@@ -27,6 +27,20 @@ public class BaseEnemy : MonoBehaviour
         
     }
 
+    virtual public void ModifyHealth(float health)
+    {
+        if (health < 0) AudioManager.Instance.PlaySoundFXClipWithID("enemy_hurt", transform, 1f);
+        enemyAnimator.SetTrigger("Hurt");
+        currentHealth += health;
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
     protected void Die()
     {
         GameManager.instance.AddScore(10);
